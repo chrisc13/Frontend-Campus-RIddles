@@ -1,0 +1,50 @@
+<body>
+	<div id="left-content"></div>
+	<div id="right-content">
+		<h1>Campus Riddles</h1>
+
+		<ng-template [ngIf]="isLoginMode">
+		<form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+			<h2>{{ isLoginMode ? 'Log in' : 'Sign Up' }}</h2>
+			<div class="form-group">
+				<label for="email">School Email:</label>
+			  <input type="email" class="form-control" id="email" name="email"  ngModel required email>
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+			  <input type="password" class="form-control" id="password"  name="password" ngModel required minlength="6">
+			  
+			</div>
+			<button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">{{ isLoginMode ? 'Log in' : 'Next' }}</button>
+		  </form>
+		<br>  
+		</ng-template>
+        <button class="switch-btn" (click)="onSwitchMode()" type="button">{{ !isLoginMode ? 'Have an account? Log in' : 'Dont have an account?' }}</button>
+		
+
+		<ng-template [ngIf]="!isLoginMode">
+			<form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+				<h2>{{ isLoginMode ? 'Log in' : 'Sign Up' }}</h2>
+				<div class="form-group">
+					<label for="email">School Email:</label>
+				  <input type="email" class="form-control" id="email" name="email" data-toggle="tooltip" data-placement="top" title="Must be school email" ngModel required email>
+				</div>
+				<div class="form-group">
+					<label for="password">Password:</label>
+				  <input type="password" class="form-control" id="password"  name="password" ngModel required minlength="6">
+				  
+					<!--make this MUST match-->
+					<label for="password">Confirm Password:</label>
+				  <input type="password" class="form-control" id="password"  name="password" ngModel required minlength="6">
+
+				
+				</div>
+				<button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">{{ isLoginMode ? 'Log in' : 'Next' }}</button>
+			  </form>
+		</ng-template>
+
+
+
+	</div>
+	
+</body>
