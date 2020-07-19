@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+body,html {
+    font: normal 1em Helvetica, sans-serif;
+    background: #F2F2F2;
+    margin:0;
+    padding:0;
+    text-align: center;
+  }
