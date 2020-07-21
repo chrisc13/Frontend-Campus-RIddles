@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import {catchError, retry } from 'rxjs/operators';
+import { Riddle } from '../_models/riddle.model';
+import { GetRiddlesService } from '../services/get-riddles.service';
+import { PostRiddleService } from '../services/post-riddle.service';
 //import { Injectable } from '@angular/core';
 
 
@@ -12,9 +15,16 @@ import {catchError, retry } from 'rxjs/operators';
 })
 export class CreateRiddlePageComponent implements OnInit {
 
-  constructor() { }
+  newRiddle: Riddle = new Riddle("", -1, "", "", -1, "");
+  message: any;
+  constructor(private service: PostRiddleService) { }
 
   ngOnInit(): void {
+  }
+
+  public createRiddle(){
+    let response = this.service.newRiddle('/Riddles', this.newRiddle);
+    response.subscribe((data) => this.message=data);
   }
 
 }
