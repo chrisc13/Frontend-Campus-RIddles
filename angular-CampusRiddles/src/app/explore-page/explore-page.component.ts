@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { from, observable, throwError } from 'rxjs';
+import { Riddle } from '../_models/riddle.model';
 
 @Component({
   selector: 'app-explore-page',
@@ -15,15 +18,18 @@ export class ExplorePageComponent implements OnInit {
 
   ngOnInit() {
     // Simple GET request with response type <any>
-    this.http
-      .get<any>('https://api.npms.io/v2/search?q=scope:angular')
-      .subscribe((data) => {
-        this.totalAngularPackages = data.total;
-        console.log(data.total);
-      });
   }
 
   getRiddles() {
-    console.log(this.totalAngularPackages);
+    let observable = this.http.get('http://localhost:8080/Riddles');
+    //.pipe(
+    //     map((data: Riddle[]) => {
+    //       return data;
+    //     }), catchError( error => {
+    //       return throwError( 'Something went wrong!' );
+    //     })
+    //  );
+
+    observable.subscribe((response) => console.log(response));
   }
 }

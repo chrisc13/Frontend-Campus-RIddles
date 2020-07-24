@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +13,7 @@ export class AuthComponent {
 
   isLoginMode = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode; //just takes the opposite (like a on/off)
     console.log(this.isLoginMode);
@@ -21,13 +22,16 @@ export class AuthComponent {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    //console.log('User is ...' + form.value);
     form.reset();
 
-    if (this.isLoginMode) {
-      this.router.navigateByUrl('/home');
-    }
+    let observable = this.http.get('http://localhost:8080/Riddles');
 
+    observable.subscribe((response) => console.log(response));
+
+    //TODO: navigate home once sign in
+    // if (this.isLoginMode) {
+    //   this.router.navigateByUrl('/home');
     //
   }
 
