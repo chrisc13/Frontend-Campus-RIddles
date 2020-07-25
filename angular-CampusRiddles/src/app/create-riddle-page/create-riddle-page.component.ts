@@ -20,7 +20,7 @@ import {
   styleUrls: ['./create-riddle-page.component.css'],
 })
 export class CreateRiddlePageComponent implements OnInit {
-  newRiddle: Riddle;
+  //newRiddle: Riddle;
   message: any;
 
   createRiddleForm: NgForm;
@@ -30,29 +30,14 @@ export class CreateRiddlePageComponent implements OnInit {
   ngOnInit(): void {}
 
   clickedCreateRiddle(createRiddleForm: NgForm) {
-    //form.reset()
-
-    console.log('submitted new riddle with..');
-
-    console.log(
-      'Riddle Name: ' + createRiddleForm.controls['riddleName'].value
-    );
-    console.log('Levels: ' + createRiddleForm.controls['levels'].value);
-    console.log('Campus: ' + createRiddleForm.controls['difficulty'].value);
-    console.log('Prize: ' + createRiddleForm.controls['riddlePrize'].value);
-    console.log(
-      'Description: ' + createRiddleForm.controls['riddleDescription'].value
-    );
-
     let title = createRiddleForm.controls['riddleName'].value;
     let levels = createRiddleForm.controls['levels'].value;
     let difficulty = createRiddleForm.controls['difficulty'].value;
     let prize = createRiddleForm.controls['riddlePrize'].value;
     let description = createRiddleForm.controls['riddleDescription'].value;
     //get this elsewhere
-    let riddlerName = 'Riddler name from session';
-
-    this.newRiddle = new Riddle(
+    let riddlerName = 'Riddler name from angular session';
+    const newRiddle: Riddle = new Riddle(
       title,
       difficulty,
       prize,
@@ -61,10 +46,9 @@ export class CreateRiddlePageComponent implements OnInit {
       description
     );
 
-    let response = this.service.newRiddle('/Riddles', this.newRiddle);
-    //console.log(response);
-    // console.log(
-    response.subscribe((data) => (this.message = data));
+    this.service.newRiddle('/Riddles', newRiddle);
+    createRiddleForm.reset();
+    // response.subscribe((data) => (this.message = data));
   }
 
   // public createRiddle() {

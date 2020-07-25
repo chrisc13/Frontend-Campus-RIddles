@@ -25,7 +25,7 @@ export class AuthComponent {
     //console.log('User is ...' + form.value);
     form.reset();
 
-    let observable = this.http.get('http://localhost:8080/Riddles');
+    let observable = this.http.get('/Riddles');
 
     observable.subscribe((response) => console.log(response));
 
