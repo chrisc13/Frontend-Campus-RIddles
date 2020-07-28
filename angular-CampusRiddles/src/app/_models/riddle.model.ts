@@ -1,10 +1,25 @@
 export class Riddle {
-    id: number;
-    title: string;
-    difficulty: number;
-    prize: string;
-    riddlerName: string;
-    levels: number;
-    riddleDescription: string;
-    // add Riddler Class Object here 
+  title: string;
+  difficulty: number;
+  prize: string;
+  riddlerName: string;
+  levels: number;
+  description: string;
+  // add Riddler Class Object here
+
+  constructor(
+    title: string,
+    difficulty: number,
+    prize: string,
+    riddlerName: string,
+    levels: number,
+    description: string
+  ) {
+    this.title = title;
+    this.difficulty = difficulty;
+    this.prize = prize;
+    this.riddlerName = riddlerName;
+    this.levels = levels;
+    this.description = description;
+  }
 }

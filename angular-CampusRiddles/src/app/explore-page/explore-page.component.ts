@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { from, observable, throwError } from 'rxjs';
+import { Riddle } from '../_models/riddle.model';
+import { GetRiddlesService } from '../services/get-riddles.service';
 
 @Component({
   selector: 'app-explore-page',
@@ -11,19 +15,25 @@ import { HttpClient } from '@angular/common/http';
 export class ExplorePageComponent implements OnInit {
   totalAngularPackages;
 
-  constructor(private http: HttpClient) {}
+  constructor(private service: GetRiddlesService) {}
 
   ngOnInit() {
     // Simple GET request with response type <any>
-    this.http
-      .get<any>('https://api.npms.io/v2/search?q=scope:angular')
-      .subscribe((data) => {
-        this.totalAngularPackages = data.total;
-        console.log(data.total);
-      });
+    this.service.getAll();
+
+    // let observable = this.http.get('api/Riddles');
+    // observable.subscribe((response) => console.log(response));
   }
 
   getRiddles() {
-    console.log(this.totalAngularPackages);
+    //let observable = this.http.get('api/Riddles');
+    //.pipe(
+    //     map((data: Riddle[]) => {
+    //       return data;
+    //     }), catchError( error => {
+    //       return throwError( 'Something went wrong!' );
+    //     })
+    //  );
+    //observable.subscribe((response) => console.log(response));
   }
 }

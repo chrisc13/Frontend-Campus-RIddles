@@ -13,6 +13,7 @@ import { MyRiddlesPageComponent } from './my-riddles-page/my-riddles-page.compon
 import { AuthComponent } from "./auth/auth.component";
 import { CreateRiddlePageComponent } from './create-riddle-page/create-riddle-page.component';
 import { HeaderComponent } from './header/header.component';
+import { GetRiddlesService } from './services/get-riddles.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     NgxWebstorageModule.forRoot()
   ],
-  providers: [],
+  // if an error occurs, its probably because i didnt add "WebRequestService" as a provider
+  providers: [GetRiddlesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
