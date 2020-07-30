@@ -5,7 +5,7 @@
 <br />
 <br />
 
-<section class="jumbotron text-center">
+<section>
   <div class="container">
     <h1>Good Riddles Keep You Thinking</h1>
     <p class="lead text-muted">
@@ -95,6 +95,9 @@
     </div>
   </div>
 </section>
+<div *ngIf="postSuccess" class="alert alert-success">
+  <strong>Successfully posted your Riddle!</strong>
+</div>
 
 <!-- TODO: figure out how to override the justify-content-center so that its in the center but not limited with boundaries-->
 <section class="row justify-content-center">

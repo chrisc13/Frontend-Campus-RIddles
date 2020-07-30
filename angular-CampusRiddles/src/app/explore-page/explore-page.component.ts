@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { from, observable, throwError } from 'rxjs';
 import { Riddle } from '../_models/riddle.model';
-import { GetRiddlesService } from '../services/get-riddles.service';
+import { RiddleService } from '../services/riddle.service';
 
 @Component({
   selector: 'app-explore-page',
@@ -14,26 +14,19 @@ import { GetRiddlesService } from '../services/get-riddles.service';
 })
 export class ExplorePageComponent implements OnInit {
   totalAngularPackages;
+  loadedRiddles: Riddle[] = [];
 
-  constructor(private service: GetRiddlesService) {}
+  constructor(private riddleService: RiddleService) {}
 
   ngOnInit() {
     // Simple GET request with response type <any>
-    this.service.getAll();
-
-    // let observable = this.http.get('api/Riddles');
-    // observable.subscribe((response) => console.log(response));
+    //this.service.getAll();
+    this.riddleService
+      .getRiddles()
+      .subscribe((riddles) => (this.loadedRiddles = riddles));
   }
 
-  getRiddles() {
-    //let observable = this.http.get('api/Riddles');
-    //.pipe(
-    //     map((data: Riddle[]) => {
-    //       return data;
-    //     }), catchError( error => {
-    //       return throwError( 'Something went wrong!' );
-    //     })
-    //  );
-    //observable.subscribe((response) => console.log(response));
+  attemptRiddle() {
+    console.log('attempting riddle');
   }
 }

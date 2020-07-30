@@ -1,9 +1,13 @@
 <br />
 <h4>Featured Riddles:</h4>
 <br />
+<p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
+  <div
+    class="carousel-inner"
+    *ngFor="let riddle of loadedRiddles; let i = index"
+  >
+    <div class="carousel-item active" *ngIf="i < 1">
       <img
         class="d-block w-100"
         src="../../assets/images/stockLocation1.jpg"
@@ -11,8 +15,8 @@
         height="200"
       />
       <div class="slide-info">
-        <h4>Location: Tempe</h4>
-        <a href="/">Click for a chance to win $50</a>
+        <h4>{{ riddle.title }}</h4>
+        <a href="/">Click for a chance to win: {{ riddle.prize }}</a>
       </div>
     </div>
     <div class="carousel-item">
@@ -25,18 +29,6 @@
       <div class="slide-info">
         <h4>Location: Downtown</h4>
         <a href="/">Click for a chance to win $20 gift card</a>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img
-        class="d-block w-100"
-        src="../../assets/images/stockImage.png"
-        alt="Third slide"
-        height="200"
-      />
-      <div class="slide-info">
-        <h4>Location: Havasu</h4>
-        <a href="/">Click for a chance to win $10</a>
       </div>
     </div>
   </div>
@@ -61,7 +53,6 @@
 </div>
 
 <br />
-<button (click)="getRiddles()">Grab All Riddles</button>
 
 <div class="filters-container">
   <br />
@@ -138,63 +129,25 @@
 </div>
 <div class="posts-container">
   <!--TEST DATA for a post-->
-
-  <div class="card-group">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This card has supporting text below as a natural lead-in to additional
-          content.
-        </p>
+  <p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
+  <ul class="list-group" *ngIf="loadedRiddles.length >= 1">
+    <li class="card-group" *ngFor="let riddle of loadedRiddles">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ riddle.title }}</h5>
+          <p class="card-text">
+            {{ riddle.description }}
+          </p>
+        </div>
+        <img
+          class="card-img-top"
+          src="../../assets/images/stockLocation3.jpg"
+          alt="Card image cap"
+          height="200"
+        />
+        <button (click)="attemptRiddle()">Do it.</button>
+        <br />
       </div>
-      <img
-        class="card-img-top"
-        src="../../assets/images/stockLocation1.jpg"
-        alt="Card image cap"
-        height="200"
-      />
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This card has supporting text below as a natural lead-in to additional
-          content.
-        </p>
-      </div>
-      <img
-        class="card-img-top"
-        src="../../assets/images/stockLocation2.jpg"
-        alt="Card image cap"
-        height="200"
-      />
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          This card has supporting text below as a natural lead-in to additional
-          content.
-        </p>
-      </div>
-      <img
-        class="card-img-top"
-        src="../../assets/images/stockLocation3.jpg"
-        alt="Card image cap"
-        height="200"
-      />
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div>
-
-  <!--END::TEST DATA for a post-->
+    </li>
+  </ul>
 </div>

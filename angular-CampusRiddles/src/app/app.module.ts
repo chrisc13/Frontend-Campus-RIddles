@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxWebstorageModule } from "ngx-webstorage";
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { CommunityPageComponent } from './community-page/community-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { MyRiddlesPageComponent } from './my-riddles-page/my-riddles-page.component';
-import { AuthComponent } from "./auth/auth.component";
+import { AuthComponent } from './auth/auth.component';
 import { CreateRiddlePageComponent } from './create-riddle-page/create-riddle-page.component';
 import { HeaderComponent } from './header/header.component';
-import { GetRiddlesService } from './services/get-riddles.service';
+import { RiddleService } from './services/riddle.service';
 
 @NgModule({
   declarations: [
@@ -25,17 +25,17 @@ import { GetRiddlesService } from './services/get-riddles.service';
     MyRiddlesPageComponent,
     AuthComponent,
     CreateRiddlePageComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     AppRoutingModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
   ],
   // if an error occurs, its probably because i didnt add "WebRequestService" as a provider
-  providers: [GetRiddlesService],
-  bootstrap: [AppComponent]
+  providers: [RiddleService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
