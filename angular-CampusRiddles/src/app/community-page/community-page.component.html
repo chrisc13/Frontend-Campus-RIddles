@@ -1,124 +1,155 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Community</title>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Community</title>
+  </head>
+  <body>
+    <br />
+    <h1>Community Forums:</h1>
+    <br />
 
-</head>
-<body>
-	<br>
-	<h1>Community Forums:</h1>
-	<br>
-
-    <div class="form-group1" id="dropdown-">
-        <label for="exampleFormControlSelect1"></label> 
-        <select class="form-control" id="exampleFormControlSelect1">
-            <option>Most Recent</option>
-            <option>Most Replies</option>
-            <option>Most Upvotes</option>
-        </select>
+    <!--  ADD FIRST DROP DOWN MENU HERE TO SELECT SCHOOL -->
+    <div class="dropdowns-container">
+      <select id="sortForumPosts">
+        <option value="upvotes">Most Upvotes</option>
+        <option value="replies">Most Replies</option>
+        <option value="recent" selected>Most Recent</option>
+      </select>
+      <button
+        type="button"
+        class="btn btn-light"
+        data-toggle="modal"
+        data-target="#exampleModalLong"
+      >
+        + New Topic
+      </button>
     </div>
-    
-	<br>
-	<br>
-	<div class="md-form mt-0">
-		<input class="form-control" type="text"
-			placeholder="Search for discussion" aria-label="Search">
-	</div>
-	<div class="posts-container">
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">gUys.. help on riddle #5.</a> <br>
-			<br>
-			<h5>Guys Help!!! I do not understand what i need to do. Lets work together on this.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>1 hr ago - heyRun_X-check</h6>
-				<h6>2 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red">
-					<span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
-				</div>
-			</div>
-		</div>
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">Some help for my takuaches.</a>
-			<br>
-			<br>
-			<h5>Hey cuh, the picture at Hayden Library is part of another
-				riddle at Noble Library.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>3 hr ago - laPerrona69</h6>
-				<h6>2 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-			</div>
-		</div>
+    <!--MODAL popup-->
+    <div
+      class="modal fade"
+      id="exampleModalLong"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">New Topic</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form
+              #createTopicForm="ngForm"
+              (ngSubmit)="clickedCreateTopic(createTopicForm)"
+            >
+              <div class="form-group row">
+                <label for="inputTitle" class="col-sm-2 col-form-label"
+                  >Title:</label
+                >
+                <div class="col-sm-10">
+                  <input class="form-control" id="inputTitle" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputContent" class="col-sm-2 col-form-label"
+                  >Content:</label
+                >
+                <div class="col-sm-10">
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    name="topicContent"
+                    ngModel
+                    required
+                  ></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputMedia" class="col-sm-2 col-form-label"
+                  >Media Link:</label
+                >
+                <div class="col-sm-10">
+                  <input class="form-control" id="inputMedia" />
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Post
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal">
+              Post
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">A hint for riddle #2</a>
-			<br>
-			<br>
-			<h5>When you attempt to solve this part, make sure you have the Campus Riddles App downloaded.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>12 hr ago - messi_isGOAT</h6>
-				<h6>21 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-			</div>
-		</div>
+    <br />
+    <br />
 
-		
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">Riddle #3 information</a>
-			<br>
-			<br>
-			<h5>When you attempt to solve this part, make sure you have the Campus Riddles App downloaded.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>12 hr ago - sundevil95</h6>
-				<h6>21 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-			</div>
-		</div>
+    <br />
+    <div class="md-form mt-0">
+      <input
+        class="form-control"
+        id="searchBar"
+        type="text"
+        placeholder="Search for discussion"
+        aria-label="Search"
+      />
+    </div>
 
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">Guide for riddle 2</a> <br> <br>
-			<h5>When you attempt to solve this part, make sure you have the
-				Campus Riddles App downloaded.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>14 hr ago - king95</h6>
-				<h6>21 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red">
-					<span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
-				</div>
-			</div>
-		</div>
-		
-		
-		
-		
-		
-		
-	</div>
-
-	<script src="../../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
-</body>
-<footer>
-	
-</footer>
+    <p *ngIf="loadedCommunityForums.length < 1">No Forums available</p>
+    <ul class="posts-container" *ngIf="loadedCommunityForums.length >= 1">
+      <li
+        class="forum-post-box"
+        id="forum"
+        *ngFor="let forum of loadedCommunityForums"
+      >
+        <a href="/">{{ forum.title }}</a> <br />
+        <br />
+        <h5>
+          {{ forum.content }}
+        </h5>
+        <br />
+        <div class="forum-post-details">
+          <h6>1 hr ago - heyRun_X-check</h6>
+          <h6>2 comments</h6>
+          <!-- fix this button later  
+			  <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
+			  -->
+          <div class="btn-upvote btn_red">
+            <span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </body>
+  <footer></footer>
 </html>

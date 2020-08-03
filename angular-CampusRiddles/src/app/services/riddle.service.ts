@@ -11,7 +11,7 @@ export class RiddleService {
   //constructor(private webReqService: WebRequestsService, http: HttpClient) {}
   readonly RIDDLE_URL;
   constructor(private http: HttpClient) {
-    this.RIDDLE_URL = '/api/Riddles';
+    this.RIDDLE_URL = '/api/riddles';
   }
   postSuccess: boolean = false;
 
