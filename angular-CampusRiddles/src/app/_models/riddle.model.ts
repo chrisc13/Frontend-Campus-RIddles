@@ -1,3 +1,9 @@
+export class RiddleModel {
+  response: string;
+  message: string;
+  riddles: Riddle[];
+}
+
 export class Riddle {
   title: string;
   difficulty: number;

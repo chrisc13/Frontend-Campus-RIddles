@@ -7,6 +7,9 @@ import { ExplorePageComponent } from './explore-page/explore-page.component';
 import { CommunityPageComponent } from './community-page/community-page.component';
 import { AuthComponent } from './auth/auth.component';
 import { CreateRiddlePageComponent } from './create-riddle-page/create-riddle-page.component';
+import { CommunitySubmitPageComponent } from './community-submit-page/community-submit-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
 
 //This is my case
 const routes: Routes = [
@@ -15,9 +18,17 @@ const routes: Routes = [
   { path: 'profile', component: ProfilePageComponent },
   { path: 'my-riddles', component: MyRiddlesPageComponent },
   { path: 'explore', component: ExplorePageComponent },
-  { path: 'community', component: CommunityPageComponent },
+  {
+    path: 'community',
+    children: [
+      { path: '', component: CommunityPageComponent },
+      { path: 'submit', component: CommunitySubmitPageComponent },
+      { path: ':id', component: CommunityDetailPageComponent },
+    ],
+  },
   { path: 'auth', component: AuthComponent },
   { path: 'create-riddle-page', component: CreateRiddlePageComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -32,5 +43,8 @@ export const routingComponents = [
   CommunityPageComponent,
   ExplorePageComponent,
   AuthComponent,
+  CommunitySubmitPageComponent,
   CreateRiddlePageComponent,
+  CommunityDetailPageComponent,
+  PageNotFoundComponent,
 ];

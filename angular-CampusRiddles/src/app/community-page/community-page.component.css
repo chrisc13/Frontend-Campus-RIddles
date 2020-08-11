@@ -1,59 +1,54 @@
-#sortForumPosts {
-  height: 50%;
-  justify-content: center;
+.row {
   margin: auto;
+  margin-top: 2%;
+  margin-bottom: 3%;
+  width: 100%;
 }
-.dropdowns-container {
-  display: flex;
-  height: 5em;
-  background: #404040;
-  justify-content: space-evenly;
-}
-.dropdowns-container .btn-light {
-  height: 50%;
-  margin: auto;
-  margin-top: 20px;
+ul {
+  list-style: none;
+  padding-left: 0px;
 }
 
+h1 {
+  font-weight: bold;
+}
+#sortForumPosts {
+  height: 100%;
+  justify-content: center;
+  margin: auto;
+  background-color: #343a40;
+  color: whitesmoke;
+}
 /*search bar for posts*/
 #searchBar {
-  font-size: 1.5em;
+  font-size: 1.3em;
   text-align: center;
   background: white;
   height: 50px;
-  width: 95%;
+  width: 60%;
   margin: auto;
+  margin-bottom: 1%;
   border-top-style: hidden;
-  border-style: solid;
-  border-bottom: 1.5px solid black;
+  border: 0.5px solid;
   box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.8);
-}
-
-/*entire block that contains all the post*/
-.posts-container {
-  list-style: none;
-  text-decoration: none;
-  line-height: 1;
-  text-align: center;
-  background: white;
-  width: 95%;
-  margin: auto;
-  border-radius: 0px 0px 3px 3px;
-  border-top-style: hidden;
-  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.8);
-}
-.posts-container a {
-  text-decoration: none;
-  color: black;
 }
 
 /*individual post block*/
 .forum-post-box {
-  padding: 3% 3% 1.5%;
+  padding-left: 0;
+  line-height: 0.5em;
+  list-style: none;
+  text-decoration: none;
+  width: 60%;
+  margin: auto;
+  padding: 1.5% 1.5% 1.5%;
   text-align: left;
-  border-bottom: 0.5px solid gray;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1.2%;
 }
-.forum-post-box > a {
+.forum-post-box > a,
+h3 {
   font-size: 1.63em;
   font-weight: bold;
 }
@@ -63,6 +58,18 @@
 }
 .btn-upvote a {
   color: black;
+}
+button {
+  height: 35px;
+  border-radius: 28px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  padding: auto;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+  background-color: #577590;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 @media (max-width: 640px) {

@@ -14,6 +14,9 @@ import { AuthComponent } from './auth/auth.component';
 import { CreateRiddlePageComponent } from './create-riddle-page/create-riddle-page.component';
 import { HeaderComponent } from './header/header.component';
 import { RiddleService } from './services/riddle.service';
+import { CommunitySubmitPageComponent } from './community-submit-page/community-submit-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { RiddleService } from './services/riddle.service';
     AuthComponent,
     CreateRiddlePageComponent,
     HeaderComponent,
+    CommunitySubmitPageComponent,
+    PageNotFoundComponent,
+    CommunityDetailPageComponent,
   ],
   imports: [
     BrowserModule,

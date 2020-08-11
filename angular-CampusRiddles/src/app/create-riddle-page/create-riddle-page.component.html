@@ -106,47 +106,70 @@
     (ngSubmit)="clickedCreateRiddle(createRiddleForm)"
   >
     <div class="form-group">
-      <label for="exampleFormControlInput1">Name of your riddle</label>
+      <label for="exampleFormControlInput1">Name of your riddle:</label>
       <input
         class="form-control"
         id="exampleFormControlInput1"
         name="riddleName"
         ngModel
+        minlength="4"
         required
       />
     </div>
     <div class="form-group">
-      <label for="exampleFormControlSelect1">How many levels?</label>
-      <select
+      <label for="exampleFormControlInput1">Location:</label>
+      <input
         class="form-control"
-        id="exampleFormControlSelect1"
-        name="levels"
+        id="exampleFormControlInput1"
+        name="riddleLocation"
         ngModel
-      >
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-      </select>
+        minlength="3"
+        required
+      />
     </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Difficulty scale?</label>
-      <select
-        class="form-control"
-        id="exampleFormControlSelect1"
-        name="difficulty"
-        ngModel
-      >
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-      </select>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">How many levels?</label>
+          <select
+            class="form-control"
+            id="exampleFormControlSelect1"
+            name="levels"
+            min="1"
+            ngModel
+            required
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Difficulty scale?</label>
+          <select
+            class="form-control"
+            id="exampleFormControlSelect1"
+            name="difficulty"
+            min="1"
+            ngModel
+            required
+          >
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+      </div>
     </div>
+
     <div class="form-group">
       <label for="exampleFormControlTextarea1"
         >What prize will you be offering to the winner?</label
@@ -156,6 +179,7 @@
         id="exampleFormControlInput1"
         name="riddlePrize"
         ngModel
+        minlength="2"
         required
       />
     </div>
@@ -169,11 +193,24 @@
         rows="3"
         name="riddleDescription"
         ngModel
+        minlength="6"
         required
       ></textarea>
     </div>
     <br />
-    <button type="submit">Create my Riddle!</button>
+    <div class="submitButton">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!createRiddleForm.valid"
+      >
+        Create my Riddle
+      </button>
+      <br />
+      <span class="validMessage" *ngIf="!createRiddleForm.valid"
+        >Please fill in all fields</span
+      >
+    </div>
   </form>
 </section>
 <br />

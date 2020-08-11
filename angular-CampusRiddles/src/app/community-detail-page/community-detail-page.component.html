@@ -1,0 +1,36 @@
+<p *ngIf="loadedCommunityForums.length < 1">No Forums available</p>
+<ul *ngIf="loadedCommunityForums.length >= 1">
+  <li
+    class="forum-post-box"
+    id="forum"
+    *ngFor="let forum of loadedCommunityForums"
+  >
+    <!-- <a href="/">{{ forum.title }}</a> <br /> -->
+    <!-- <button (click)=""></button> -->
+    <h3>{{ forum.title }}</h3>
+    <br />
+    <h5>
+      {{ forum.content }}
+    </h5>
+    <br />
+    <div class="forum-post-details">
+      <!-- {{ forum.media }} -->
+      <!-- fix this button later  
+			  <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
+			  -->
+      <div class="btn-upvote btn_red">
+        <span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
+      </div>
+    </div>
+  </li>
+</ul>
+<div class="form-group">
+  <label for="exampleFormControlTextarea1">Comment as <i>ronaldo2020</i></label>
+  <textarea
+    class="form-control"
+    id="exampleFormControlTextarea1"
+    rows="3"
+    placeholder="What are your thoughts?"
+  ></textarea>
+  <button>Comment</button>
+</div>

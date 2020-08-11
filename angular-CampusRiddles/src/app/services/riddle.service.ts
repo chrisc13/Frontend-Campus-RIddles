@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Riddle } from '../_models/riddle.model';
+import { Riddle, RiddleModel } from '../_models/riddle.model';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -15,8 +15,8 @@ export class RiddleService {
   }
   postSuccess: boolean = false;
 
-  getRiddles(): Observable<Riddle[]> {
-    return this.http.get<Riddle[]>(`${this.RIDDLE_URL}`);
+  getRiddles(): Observable<RiddleModel> {
+    return this.http.get<RiddleModel>(`${this.RIDDLE_URL}`);
   }
 
   postRiddle(payload: Object): boolean {

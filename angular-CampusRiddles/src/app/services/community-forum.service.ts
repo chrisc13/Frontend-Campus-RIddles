@@ -1,23 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CommunityForum } from '../_models/community-forum.model';
+import {
+  CommunityForum,
+  CommunityForumModel,
+} from '../_models/community-forum.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommunityForumService {
+  public forum: CommunityForum;
+
   readonly COMMUNITY_URL;
   constructor(private http: HttpClient) {
     this.COMMUNITY_URL = 'api/community-forums';
   }
   postSuccess: boolean = false;
 
-  getCommunityForums(): Observable<CommunityForum[]> {
-    return this.http.get<CommunityForum[]>(`${this.COMMUNITY_URL}`);
+  getCommunityForum(id: number): Observable<CommunityForumModel> {
+    //const params = new HttpParams().append('param', id.toString());
+    return this.http.get<CommunityForumModel>(
+      `${this.COMMUNITY_URL}/${id.toString()}`
+    );
   }
 
-  postCommunityForum(payload: Object): boolean {
+  getCommunityForums(): Observable<CommunityForumModel> {
+    return this.http.get<CommunityForumModel>(`${this.COMMUNITY_URL}`);
+  }
+  postCommunityForum(payload: Object): Observable<CommunityForumModel> {
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -25,13 +36,10 @@ export class CommunityForumService {
     };
     let myJson = JSON.stringify(payload);
 
-    this.http
-      .post(`${this.COMMUNITY_URL}`, myJson, options)
-      .subscribe((data) => {
-        this.postSuccess = true;
-      });
-
-    //change this to real true value within subscribe function
-    return true;
+    return this.http.post<CommunityForumModel>(
+      `${this.COMMUNITY_URL}`,
+      myJson,
+      options
+    );
   }
 }

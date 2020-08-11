@@ -1,4 +1,16 @@
-button[type="submit"] {
+.row {
+  background-color: white;
+  margin: auto;
+  margin-top: 3%;
+}
+
+.form-group {
+  background-color: white;
+  margin-top: 3%;
+  padding: 3%;
+}
+
+button:enabled {
   margin-top: 10%;
   height: 45px;
   background-color: #577590;
