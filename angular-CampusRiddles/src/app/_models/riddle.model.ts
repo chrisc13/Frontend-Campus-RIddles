@@ -8,24 +8,24 @@ export class Riddle {
   title: string;
   difficulty: number;
   prize: string;
-  riddlerName: string;
+  riddlername: string;
   levels: number;
-  description: string;
+  riddledescription: string;
   // add Riddler Class Object here
 
   constructor(
     title: string,
     difficulty: number,
     prize: string,
-    riddlerName: string,
+    riddlername: string,
     levels: number,
-    description: string
+    riddledescription: string
   ) {
     this.title = title;
     this.difficulty = difficulty;
     this.prize = prize;
-    this.riddlerName = riddlerName;
+    this.riddlername = riddlername;
     this.levels = levels;
-    this.description = description;
+    this.riddledescription = riddledescription;
   }
 }

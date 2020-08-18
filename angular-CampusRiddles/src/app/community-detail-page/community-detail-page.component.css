@@ -43,6 +43,10 @@ h3 {
   width: 65%;
   margin: auto;
 }
+
+#comment {
+  border: none;
+}
 button {
   margin-top: 3%;
   height: 40px;

@@ -2,6 +2,7 @@
 <h4>Featured Riddles:</h4>
 <br />
 <p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
+
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div
     class="carousel-inner"
@@ -51,6 +52,33 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+<!-- <ul
+  class="card"
+  style="width: 18rem;"
+  *ngFor="let riddle of loadedRiddles; let i = index"
+>
+  <li *ngIf="i < 3">
+    <div class="card-body">
+      <h5 class="card-title">{{ riddle.title }}</h5>
+      <p class="card-text">
+        {{ riddle.riddledescription }}
+      </p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </li>
+</ul> -->
+
+<!-- <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->
 
 <br />
 
@@ -134,9 +162,11 @@
     <li class="card-group" *ngFor="let riddle of loadedRiddles">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ riddle.title }}</h5>
+          <h5 class="card-title">
+            {{ riddle.title }} by {{ riddle.riddlername }}
+          </h5>
           <p class="card-text">
-            {{ riddle.description }}
+            {{ riddle.riddledescription }}
           </p>
         </div>
         <img

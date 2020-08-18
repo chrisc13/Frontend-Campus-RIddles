@@ -28,7 +28,9 @@ export class ExplorePageComponent implements OnInit, OnDestroy {
       .getRiddles()
       .subscribe(
         (result) => (
-          (this.response = result.response), console.log(result.message)
+          (this.loadedRiddles = result.riddles),
+          console.log(result.message),
+          console.log(this.loadedRiddles)
         )
       );
   }

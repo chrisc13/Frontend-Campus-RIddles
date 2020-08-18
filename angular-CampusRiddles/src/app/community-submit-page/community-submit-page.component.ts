@@ -23,12 +23,15 @@ export class CommunitySubmitPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   clickedCreateForum(createForum: NgForm) {
-    createForum.reset();
+    //replace this will real id of user logged in
+    var hunterId = 1;
     const newForum: CommunityForum = new CommunityForum(
       null,
       createForum.controls['title'].value,
       createForum.controls['content'].value,
-      'https://unsplash.com/photos/_TuI8tZHlk4'
+      'https://unsplash.com/photos/_TuI8tZHlk4',
+      '',
+      hunterId
     );
 
     this.forumSub = this.communityForumService
@@ -43,6 +46,7 @@ export class CommunitySubmitPageComponent implements OnInit, OnDestroy {
       this.showPostSuccess = true;
       console.log('changed to true');
     }
+    createForum.reset();
   }
 
   ngOnDestroy() {

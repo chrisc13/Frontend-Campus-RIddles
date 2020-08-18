@@ -10,8 +10,6 @@ import {
   providedIn: 'root',
 })
 export class CommunityForumService {
-  public forum: CommunityForum;
-
   readonly COMMUNITY_URL;
   constructor(private http: HttpClient) {
     this.COMMUNITY_URL = 'api/community-forums';
@@ -29,15 +27,18 @@ export class CommunityForumService {
     return this.http.get<CommunityForumModel>(`${this.COMMUNITY_URL}`);
   }
   postCommunityForum(payload: Object): Observable<CommunityForumModel> {
+    console.log('IN POST COMMUNIYTY FORUM1!!!!!!!');
+
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
     };
     let myJson = JSON.stringify(payload);
+    console.log('will post', myJson);
 
     return this.http.post<CommunityForumModel>(
-      `${this.COMMUNITY_URL}`,
+      `${this.COMMUNITY_URL}/submit`,
       myJson,
       options
     );

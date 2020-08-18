@@ -7,30 +7,69 @@
   >
     <!-- <a href="/">{{ forum.title }}</a> <br /> -->
     <!-- <button (click)=""></button> -->
-    <h3>{{ forum.title }}</h3>
+    <h3>{{ forum?.title }}</h3>
     <br />
     <h5>
-      {{ forum.content }}
+      {{ forum?.content }}
     </h5>
     <br />
     <div class="forum-post-details">
       <!-- {{ forum.media }} -->
       <!-- fix this button later  
 			  <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-			  -->
+        -->
+      <h6>1 hr ago - {{ forum?.hunter_username }}</h6>
+      <h6>2 comments</h6>
       <div class="btn-upvote btn_red">
         <span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
       </div>
     </div>
   </li>
 </ul>
-<div class="form-group">
-  <label for="exampleFormControlTextarea1">Comment as <i>ronaldo2020</i></label>
-  <textarea
-    class="form-control"
-    id="exampleFormControlTextarea1"
-    rows="3"
-    placeholder="What are your thoughts?"
-  ></textarea>
-  <button>Comment</button>
-</div>
+<form #commentForm="ngForm" (ngSubmit)="clickedAddComment(commentForm)">
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1"
+      >Comment as <i>hunterExample</i></label
+    >
+    <textarea
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="3"
+      placeholder="What are your thoughts?"
+      name="text"
+      ngModel
+      required
+    ></textarea>
+    <button type="submit">Comment</button>
+  </div>
+</form>
+<br />
+
+<p *ngIf="loadedComments.length < 1">No comments</p>
+<ul *ngIf="loadedComments.length >= 1">
+  <li
+    class="forum-post-box"
+    id="comment"
+    *ngFor="let comment of loadedComments"
+  >
+    <!-- <a href="/">{{ forum.title }}</a> <br /> -->
+    <!-- <button (click)=""></button> -->
+    <!-- <h3>{{ comment.text }}</h3> -->
+    <br />
+    <h5>
+      {{ comment?.text }}
+    </h5>
+    <br />
+    <div class="forum-post-details">
+      <!-- {{ forum.media }} -->
+      <!-- fix this button later  
+			  <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
+        -->
+      <h6>1 hr ago - {{ comment?.hunter_username }}</h6>
+
+      <div class="btn-upvote btn_red">
+        <span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
+      </div>
+    </div>
+  </li>
+</ul>
