@@ -13,17 +13,21 @@
       </button>
     </div>
   </div>
-  <input type="text" id="searchBar" placeholder="Search for Discussions" />
+  <!-- <input type="text" id="searchBar" placeholder="Search for Discussions" /> -->
 
   <!-- <input type="text" placeholder="search here" id="searchBar" /> -->
-
+  <input
+    [(ngModel)]="searchTerm"
+    id="searchBar"
+    placeholder="Search for Discussions"
+  />
   <p *ngIf="loadedCommunityForums.length < 1">No Forums available</p>
 
   <ul *ngIf="loadedCommunityForums.length >= 1">
     <li
       class="forum-post-box"
       id="forum"
-      *ngFor="let forum of loadedCommunityForums"
+      *ngFor="let forum of loadedCommunityForums | filter: searchTerm"
       role="button"
       (click)="clickDetail(forum)"
     >
@@ -48,5 +52,6 @@
         </div>
       </div>
     </li>
+    <br />
   </ul>
 </body>

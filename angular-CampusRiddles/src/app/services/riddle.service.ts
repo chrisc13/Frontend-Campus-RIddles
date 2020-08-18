@@ -15,11 +15,16 @@ export class RiddleService {
   }
   postSuccess: boolean = false;
 
+  getRiddle(id: number): Observable<RiddleModel> {
+    //const params = new HttpParams().append('param', id.toString());
+    return this.http.get<RiddleModel>(`${this.RIDDLE_URL}/${id.toString()}`);
+  }
+
   getRiddles(): Observable<RiddleModel> {
     return this.http.get<RiddleModel>(`${this.RIDDLE_URL}`);
   }
 
-  postRiddle(payload: Object): boolean {
+  postRiddle(payload: Object): Observable<RiddleModel> {
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -27,11 +32,10 @@ export class RiddleService {
     };
     let myJson = JSON.stringify(payload);
 
-    this.http.post(`${this.RIDDLE_URL}`, myJson, options).subscribe((data) => {
-      this.postSuccess = true;
-    });
-
-    //change this to real true value within subscribe function
-    return true;
+    return this.http.post<RiddleModel>(
+      `${this.RIDDLE_URL}/submit`,
+      myJson,
+      options
+    );
   }
 }

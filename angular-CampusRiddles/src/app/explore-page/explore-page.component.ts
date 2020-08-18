@@ -5,6 +5,7 @@ import { from, observable, throwError } from 'rxjs';
 import { Riddle } from '../_models/riddle.model';
 import { RiddleService } from '../services/riddle.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-explore-page',
@@ -18,8 +19,9 @@ export class ExplorePageComponent implements OnInit, OnDestroy {
   totalAngularPackages;
   loadedRiddles: Riddle[] = [];
   response: String;
+  searchTerm: string;
 
-  constructor(private riddleService: RiddleService) {}
+  constructor(private riddleService: RiddleService, private router: Router) {}
 
   ngOnInit() {
     // Simple GET request with response type <any>
@@ -35,8 +37,8 @@ export class ExplorePageComponent implements OnInit, OnDestroy {
       );
   }
 
-  attemptRiddle() {
-    console.log('attempting riddle');
+  clickDetail(riddle: Riddle) {
+    this.router.navigate(['/explore', riddle.id]);
   }
 
   ngOnDestroy() {

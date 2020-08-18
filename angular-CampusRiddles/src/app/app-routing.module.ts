@@ -10,6 +10,7 @@ import { CreateRiddlePageComponent } from './create-riddle-page/create-riddle-pa
 import { CommunitySubmitPageComponent } from './community-submit-page/community-submit-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
+import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
 
 //This is my case
 const routes: Routes = [
@@ -17,7 +18,13 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'my-riddles', component: MyRiddlesPageComponent },
-  { path: 'explore', component: ExplorePageComponent },
+  {
+    path: 'explore',
+    children: [
+      { path: '', component: ExplorePageComponent },
+      { path: ':id', component: RiddleDetailPageComponent },
+    ],
+  },
   {
     path: 'community',
     children: [
@@ -49,5 +56,6 @@ export const routingComponents = [
   CommunitySubmitPageComponent,
   CreateRiddlePageComponent,
   CommunityDetailPageComponent,
+  RiddleDetailPageComponent,
   PageNotFoundComponent,
 ];

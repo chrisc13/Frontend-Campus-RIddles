@@ -11,12 +11,14 @@
 }
 
 button:enabled {
-  margin-top: 10%;
   height: 45px;
   background-color: #577590;
   color: white;
 }
 
+button {
+  margin-top: 10%;
+}
 button:disabled {
   background: grey;
   border: 1px #577590 solid;

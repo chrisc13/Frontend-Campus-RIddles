@@ -17,6 +17,8 @@ import { RiddleService } from './services/riddle.service';
 import { CommunitySubmitPageComponent } from './community-submit-page/community-submit-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { CommunityDetailPageComponent } from './community-detail-page/community-
     CommunitySubmitPageComponent,
     PageNotFoundComponent,
     CommunityDetailPageComponent,
+    RiddleDetailPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { CommunityDetailPageComponent } from './community-detail-page/community-
     FormsModule,
     AppRoutingModule,
     NgxWebstorageModule.forRoot(),
+    Ng2SearchPipeModule,
   ],
   // if an error occurs, its probably because i didnt add "WebRequestService" as a provider
   providers: [RiddleService],

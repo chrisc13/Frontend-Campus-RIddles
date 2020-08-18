@@ -1,4 +1,5 @@
 <br />
+<router-outlet></router-outlet>
 <h4>Featured Riddles:</h4>
 <br />
 <p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
@@ -153,18 +154,24 @@
     type="text"
     placeholder="Search by creator"
     aria-label="Search"
+    [(ngModel)]="searchTerm"
   />
 </div>
 <div class="posts-container">
   <!--TEST DATA for a post-->
   <p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
   <ul class="list-group" *ngIf="loadedRiddles.length >= 1">
-    <li class="card-group" *ngFor="let riddle of loadedRiddles">
+    <li
+      class="card-group"
+      *ngFor="let riddle of loadedRiddles | filter: searchTerm"
+      role="button"
+      (click)="clickDetail(riddle)"
+    >
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">
+          <h4 class="card-title">
             {{ riddle.title }} by {{ riddle.riddlername }}
-          </h5>
+          </h4>
           <p class="card-text">
             {{ riddle.riddledescription }}
           </p>
@@ -175,9 +182,10 @@
           alt="Card image cap"
           height="200"
         />
-        <button (click)="attemptRiddle()">Do it.</button>
         <br />
+        <h5>Prize:{{ riddle.prize }}</h5>
       </div>
     </li>
+    <br />
   </ul>
 </div>

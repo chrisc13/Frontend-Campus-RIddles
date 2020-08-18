@@ -55,6 +55,10 @@ a {
   color: #262626;
 }
 
+.card h5 {
+  font-weight: bold;
+}
+
 /*search bar for posts*/
 .form-control {
   font-size: 1.5em;
@@ -90,6 +94,7 @@ a {
   height: 25%;
   display: flex;
   justify-content: center;
+  margin-bottom: 5%;
 }
 .post-box h4 {
   margin: auto;
@@ -116,6 +121,9 @@ a {
   margin: auto;
 }
 
+.card {
+  padding-bottom: 2%;
+}
 @media (max-width: 640px) {
   #carouselExampleControls {
     height: 30%;

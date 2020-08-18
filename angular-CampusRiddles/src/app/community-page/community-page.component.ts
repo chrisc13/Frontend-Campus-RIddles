@@ -11,6 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./community-page.component.css'],
 })
 export class CommunityPageComponent implements OnInit, OnDestroy {
+  searchTerm: string;
+
   constructor(
     private communityForumService: CommunityForumService,
     private router: Router,
@@ -39,6 +41,7 @@ export class CommunityPageComponent implements OnInit, OnDestroy {
     console.log(forum.title);
     this.router.navigate(['/community', forum.id]);
   }
+
   ngOnDestroy() {
     if (this.myCommunitySub) {
       this.myCommunitySub.unsubscribe();
