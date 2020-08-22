@@ -4,6 +4,8 @@ import { CommunityForumService } from '../services/community-forum.service';
 import { CommunityForum } from '../_models/community-forum.model';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Vote } from '../_models/vote.model';
+import { VoteService } from '../services/vote.service';
 
 @Component({
   selector: 'app-community-page',
@@ -15,12 +17,16 @@ export class CommunityPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private communityForumService: CommunityForumService,
+    private voteService: VoteService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   myCommunitySub: Subscription;
   loadedCommunityForums: CommunityForum[] = [];
+  loadedComments: Comment[] = [];
+  isLiked: boolean = false;
+  isDisliked: boolean = false;
 
   ngOnInit(): void {
     this.myCommunitySub = this.communityForumService
@@ -40,6 +46,22 @@ export class CommunityPageComponent implements OnInit, OnDestroy {
   clickDetail(forum: CommunityForum) {
     console.log(forum.title);
     this.router.navigate(['/community', forum.id]);
+  }
+  clickLike(forum: CommunityForum) {
+    const newVote: Vote = new Vote(null, 1, 'hunterExample', forum.id);
+
+    this.myCommunitySub = this.voteService
+      .postVote(newVote)
+      .subscribe((result) => (this.isLiked = true));
+    window.location.reload();
+  }
+  clickDislike(forum: CommunityForum) {
+    const newVote: Vote = new Vote(null, -1, 'hunterExample', forum.id);
+
+    this.myCommunitySub = this.voteService
+      .postVote(newVote)
+      .subscribe((result) => (this.isDisliked = true));
+    window.location.reload();
   }
 
   ngOnDestroy() {

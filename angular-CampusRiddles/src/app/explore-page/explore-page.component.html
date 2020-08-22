@@ -1,10 +1,46 @@
-<br />
+<app-header></app-header>
 <router-outlet></router-outlet>
-<h4>Featured Riddles:</h4>
 <br />
-<p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
+<h4>Featured Riddles:</h4>
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
+<div class="row">
+  <div class="col">
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+      <div class="card-header">Prize: $30</div>
+      <div class="card-body">
+        <h5 class="card-title">ASU Riddle 1</h5>
+        <p class="card-text">
+          A quick Riddle for you all!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+      <div class="card-header">Prize: $50</div>
+      <div class="card-body">
+        <h5 class="card-title">NAU Riddle 2</h5>
+        <p class="card-text">
+          Will be tough, so make time.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+      <div class="card-header">Prize: $15</div>
+      <div class="card-body">
+        <h5 class="card-title">USC Riddle 3</h5>
+        <p class="card-text">
+          Another Riddle fro people.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div
     class="carousel-inner"
     *ngFor="let riddle of loadedRiddles; let i = index"
@@ -52,7 +88,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> -->
 <!-- <ul
   class="card"
   style="width: 18rem;"
@@ -160,32 +196,33 @@
 <div class="posts-container">
   <!--TEST DATA for a post-->
   <p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
-  <ul class="list-group" *ngIf="loadedRiddles.length >= 1">
-    <li
-      class="card-group"
-      *ngFor="let riddle of loadedRiddles | filter: searchTerm"
-      role="button"
-      (click)="clickDetail(riddle)"
-    >
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">
-            {{ riddle.title }} by {{ riddle.riddlername }}
-          </h4>
-          <p class="card-text">
-            {{ riddle.riddledescription }}
-          </p>
-        </div>
-        <img
-          class="card-img-top"
-          src="../../assets/images/stockLocation3.jpg"
-          alt="Card image cap"
-          height="200"
-        />
-        <br />
+  <div
+    class="card-group"
+    *ngFor="let riddle of loadedRiddles | filter: searchTerm"
+    role="button"
+    (click)="clickDetail(riddle)"
+  >
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">
+          {{ riddle.title }} by {{ riddle.riddlername }}
+        </h4>
+        <p class="card-text">
+          {{ riddle.riddledescription }}
+        </p>
+      </div>
+      <img
+        class="card-img-top"
+        src="../../assets/images/stockLocation3.jpg"
+        alt="Card image cap"
+        height="200"
+      />
+      <br />
+      <div class="forum-post-details">
+        <h5>Levels:{{ riddle.levels.length }}</h5>
         <h5>Prize:{{ riddle.prize }}</h5>
       </div>
-    </li>
-    <br />
-  </ul>
+    </div>
+  </div>
+  <br />
 </div>

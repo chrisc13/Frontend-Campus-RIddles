@@ -31,7 +31,8 @@ export class CommunitySubmitPageComponent implements OnInit, OnDestroy {
       createForum.controls['content'].value,
       'https://unsplash.com/photos/_TuI8tZHlk4',
       '',
-      hunterId
+      hunterId,
+      0
     );
 
     this.forumSub = this.communityForumService

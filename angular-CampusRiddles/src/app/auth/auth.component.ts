@@ -45,6 +45,8 @@ export class AuthComponent implements OnInit, OnDestroy {
         console.log('Logged in as: ' + result.hunter.username)
       );
 
+    this.router.navigateByUrl('/explore');
+
     //TODO: navigate home once sign in
     // if (this.isLoginMode) {
     //   this.router.navigateByUrl('/explore');

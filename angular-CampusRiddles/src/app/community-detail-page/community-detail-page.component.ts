@@ -18,20 +18,19 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./community-detail-page.component.css'],
 })
 export class CommunityDetailPageComponent implements OnInit, OnDestroy {
-  forumId: number;
-  loadedCommunityForums: CommunityForum[] = [];
-  loadedComments: Comment[] = [];
-  postResponse: string;
-  showPostSuccess: boolean = false;
-  forumSub: Subscription;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private communityForumService: CommunityForumService,
     private commentService: CommentService
   ) {}
-
+  forumId: number;
+  loadedCommunityForums: CommunityForum[] = [];
+  loadedComments: Comment[] = [];
+  postResponse: string;
+  showPostSuccess: boolean = false;
+  showCommentDialog: boolean = false;
+  forumSub: Subscription;
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get('id'));
@@ -44,15 +43,13 @@ export class CommunityDetailPageComponent implements OnInit, OnDestroy {
           (result) => (this.loadedCommunityForums = result.communityForums)
         );
     });
-
-    this.getForumComments();
   }
 
-  getForumComments() {
-    this.forumSub = this.commentService
-      .getComments(this.forumId)
-      .subscribe((result) => (this.loadedComments = result.comments));
-    console.log('again');
+  clickCommentDialog() {
+    this.showCommentDialog = true;
+  }
+  clickUpvote(forum: CommunityForum) {
+    console.log('Liked ', forum.title);
   }
 
   clickedAddComment(commentForm: NgForm) {

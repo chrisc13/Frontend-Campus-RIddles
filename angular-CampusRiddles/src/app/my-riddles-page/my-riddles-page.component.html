@@ -1,91 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MyRiddles</title>
-
-</head>
+<app-header></app-header>
 <body>
+  <br />
+  <h2><b>Riddles subscribed to: </b></h2>
+  <br />
 
-	<br>
-	<br>
-	
-	<div class="levels-container">
-		<div class="form-check">
-			<h5>Easy</h5>
-			<input type="checkbox" class="form-check-input" id="exampleCheck1">
-			<label class="form-check-label" for="exampleCheck1"></label>
-		</div>
-		<div class="form-check">
-			<h5>Intermediate</h5>
-			<input type="checkbox" class="form-check-input" id="exampleCheck1">
-			<label class="form-check-label" for="exampleCheck1"></label>
-		</div>
-		<div class="form-check">
-			<h5>Difficult</h5>
-			<input type="checkbox" class="form-check-input" id="exampleCheck1">
-			<label class="form-check-label" for="exampleCheck1"></label>
-		</div>
-	</div>
-	<br>
-	<br>
+  <div class="levels-container">
+    <div class="form-check">
+      <h5>Easy</h5>
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1"></label>
+    </div>
+    <div class="form-check">
+      <h5>Intermediate</h5>
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1"></label>
+    </div>
+    <div class="form-check">
+      <h5>Difficult</h5>
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1"></label>
+    </div>
+  </div>
+  <br />
+  <br />
 
-	<div class="progress-container">
-		<h5>chrisc13's Riddle:</h5>
-		<div class="progress">
-			<div class="progress-bar" role="progressbar" style="width: 75%;"
-				aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-		</div>
-		<br>
-		<div class="posts-container">
-			<div class="post-box">
-				<img src="../../assets/images/stockLocation1.jpg" class="stockImage" height="200" width="200"
-				>
-				
-				<h4>Hello its ya boii the chris, coming at you wid a new game.</h4>
-			</div>
-		</div>
-		<br>
-		<br>
-		<h5>r_sergio123's Riddle:</h5>
-		<div class="progress">
-			<div class="progress-bar" role="progressbar" style="width: 25%;"
-				aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-		</div>
-		<br>
-		<div class="posts-container">
-			<div class="post-box">
-				<img src="../../assets/images/stockLocation2.jpg" class="stockImage" height="200" width="200">
-				
-				<h4>Hello its ya boii the sergio, coming at you wid a new game.</h4>
-			</div>
-		</div>
-		<br>
-		<br>
-		<h5>the_joelt20's Riddle:</h5>
-		<div class="progress">
-			<div class="progress-bar" role="progressbar" style="width: 50%;"
-				aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-		</div>
-		<br>
-		<div class="posts-container">
-			<div class="post-box">
-				<img src="../../assets/images/stockLocation3.jpg" class="stockImage" height="200" width="200">
-				
-				<h4>Hello its ya boii the joel, coming at you wid a new game.</h4>
-			</div>
-		</div>
-	</div>
+  <div
+    class="progress-container"
+    *ngFor="let riddle of loadedSubscribedRiddles"
+  >
+    <h3><b> Title:</b> {{ riddle.title }}</h3>
+    <h5><b> From Riddler:</b> {{ riddle.riddlername }}</h5>
+    <div class="progress">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        style="width: 75%;"
+        aria-valuenow="75"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        75%
+      </div>
+    </div>
+    <br />
+    <div class="posts-container">
+      <div class="post-box">
+        <img
+          src="../../assets/images/stockLocation1.jpg"
+          class="stockImage"
+          height="200"
+          width="200"
+        />
 
-	<!--  TWO DROP DOWN LISTS FOR SEARCHES -->
-	<!--  ADD FIRST DROP DOWN MENU HERE TO SELECT SCHOOL -->
+        <h4>{{ riddle.riddledescription }}</h4>
+      </div>
+    </div>
+    <br />
+    <br />
+    <hr />
+    <hr />
+  </div>
 
-	<br>
+  <!--  TWO DROP DOWN LISTS FOR SEARCHES -->
+  <!--  ADD FIRST DROP DOWN MENU HERE TO SELECT SCHOOL -->
 
-
+  <br />
 </body>
 <footer>
-	<!--  add footer here -->
-
+  <!--  add footer here -->
 </footer>
-</html>

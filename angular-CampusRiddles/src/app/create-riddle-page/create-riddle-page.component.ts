@@ -12,6 +12,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { Level } from '../_models/level.model';
+import { LevelRiddleService } from '../services/level-riddle.service';
 //import { Injectable } from '@angular/core';
 
 @Component({
@@ -27,7 +29,10 @@ export class CreateRiddlePageComponent implements OnInit, OnDestroy {
 
   createRiddleForm: NgForm;
 
-  constructor(private riddleService: RiddleService) {}
+  constructor(
+    private riddleService: RiddleService,
+    private levelService: LevelRiddleService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -41,7 +46,6 @@ export class CreateRiddlePageComponent implements OnInit, OnDestroy {
       createRiddleForm.controls['difficulty'].value,
       createRiddleForm.controls['riddlePrize'].value,
       'Riddler name from angular session',
-      createRiddleForm.controls['levels'].value,
       createRiddleForm.controls['riddleDescription'].value,
       createRiddleForm.controls['riddleLocation'].value,
       riddler_id
@@ -57,6 +61,20 @@ export class CreateRiddlePageComponent implements OnInit, OnDestroy {
         )
       );
     createRiddleForm.reset();
+  }
+
+  clickedCreateRiddleLevel(createLevelForm: NgForm) {
+    var riddle_id = 14;
+
+    const newLevel: Level = new Level(
+      createLevelForm.controls['levelNumber'].value,
+      createLevelForm.controls['question'].value,
+      createLevelForm.controls['answer'].value
+    );
+
+    this.levelService
+      .addRiddleLevel(newLevel, riddle_id)
+      .subscribe((result) => console.log(result));
   }
 
   ngOnDestroy() {

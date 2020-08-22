@@ -1,3 +1,4 @@
+<app-header></app-header>
 <body>
   <br />
 
@@ -7,6 +8,11 @@
     <div class="col">
       <h1>Forums</h1>
     </div>
+    <!-- <select name="cars" id="cars" aria-placeholder>
+      <option>Sort By:</option>
+      <option value="bynewest">Newest Posts</option>
+      <option value="bylikes">Most likes</option>
+    </select> -->
     <div class="col">
       <button type="button" class="btn btn-dark" (click)="clickedCreateTopic()">
         Create New Post
@@ -25,31 +31,43 @@
 
   <ul *ngIf="loadedCommunityForums.length >= 1">
     <li
-      class="forum-post-box"
-      id="forum"
+      class="forum-container"
       *ngFor="let forum of loadedCommunityForums | filter: searchTerm"
-      role="button"
-      (click)="clickDetail(forum)"
     >
-      <!-- <a href="/">{{ forum.title }}</a> <br /> -->
-      <!-- <button (click)=""></button> -->
-      <h3>{{ forum.title }}</h3>
-      <br />
-      <h5>
-        {{ forum.content }}
-      </h5>
-      <br />
-      <br />
-      <div class="forum-post-details">
-        <h6>1 hr ago - {{ forum.hunter_username }}</h6>
-        <h6>2 comments</h6>
-        <!-- fix this button later  
+      <div class="like-box">
+        <img
+          src="../../assets/images/icons/chevron-up.svg"
+          alt=""
+          role="button"
+          (click)="clickLike(forum)"
+          [style.background-color]="isLiked ? 'green' : ''"
+        />
+        <h4>{{ forum.votecount }}</h4>
+        <img
+          src="../../assets/images/icons/chevron-down.svg"
+          alt=""
+          role="button"
+          (click)="clickDislike(forum)"
+          [style.background-color]="isDisliked ? 'red' : ''"
+        />
+      </div>
+      <div class="forum-post-box" role="button" (click)="clickDetail(forum)">
+        <!-- <a href="/">{{ forum.title }}</a> <br /> -->
+        <!-- <button (click)=""></button> -->
+        <h3>{{ forum.title }}</h3>
+        <br />
+        <h5>
+          {{ forum.content }}
+        </h5>
+        <br />
+        <br />
+        <div class="forum-post-details">
+          <h6>1 hr ago - {{ forum.hunter_username }}</h6>
+          <h6>{{ forum.comments.length }} comments</h6>
+          <h6>{{ forum.votes.length }} votes</h6>
+          <!-- fix this button later  
         <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-        -->
-
-        <div class="btn-upvote btn_red">
-          <span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
-        </div>
+        --></div>
       </div>
     </li>
     <br />

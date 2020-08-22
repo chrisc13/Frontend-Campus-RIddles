@@ -1,20 +1,50 @@
-.container {
-  margin-top: 2%;
-  background-color: white;
-  list-style: none;
-  width: 65%;
-  border: 1px black;
-}
 ul {
   list-style: none;
   padding-left: 0px;
 }
-/*individual post block*/
+.like-box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+  margin-bottom: 1.2%;
+  padding: 1.5% 1.5% 1.5%;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+  width: 5%;
+}
+.forum-container {
+  padding: auto;
+  margin: auto;
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+}
+.forum-container img {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
 .forum-post-box {
+  padding-left: 0;
   line-height: 0.5em;
   list-style: none;
   text-decoration: none;
-  width: 65%;
+  width: 55%;
+  margin: auto;
+  padding: 1.5% 1.5% 1.5%;
+  text-align: left;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1.2%;
+  margin-right: 20%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+}
+/*individual post block*/
+.comment-box {
+  line-height: 0.5em;
+  list-style: none;
+  text-decoration: none;
+  width: 60%;
   margin: auto;
   text-align: left;
   background-color: white;
@@ -23,7 +53,7 @@ ul {
   margin-top: 2%;
   padding: 1%;
 }
-.forum-post-box > a,
+.commment-box > a,
 h3 {
   font-size: 1.63em;
   font-weight: bold;
@@ -31,6 +61,10 @@ h3 {
 .forum-post-details {
   display: flex;
   justify-content: space-evenly;
+}
+
+#comment-box {
+  justify-content: center;
 }
 .btn-upvote a {
   color: black;
@@ -40,7 +74,7 @@ h3 {
   font-weight: bold;
 }
 .form-group {
-  width: 65%;
+  width: 60%;
   margin: auto;
 }
 

@@ -1,3 +1,5 @@
+import { Level } from './level.model';
+
 export class RiddleModel {
   response: string;
   message: string;
@@ -10,10 +12,10 @@ export class Riddle {
   difficulty: number;
   prize: string;
   riddlername: string;
-  levels: number;
   riddledescription: string;
   location: string;
   riddler_id: number;
+  levels: Level[];
   // add Riddler Class Object here
 
   constructor(
@@ -22,7 +24,6 @@ export class Riddle {
     difficulty: number,
     prize: string,
     riddlername: string,
-    levels: number,
     riddledescription: string,
     location: string,
     riddler_id: number
@@ -32,7 +33,6 @@ export class Riddle {
     this.difficulty = difficulty;
     this.prize = prize;
     this.riddlername = riddlername;
-    this.levels = levels;
     this.riddledescription = riddledescription;
     this.location = location;
     this.riddler_id = riddler_id;

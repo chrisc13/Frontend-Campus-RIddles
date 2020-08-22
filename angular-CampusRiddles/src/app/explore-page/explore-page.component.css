@@ -21,7 +21,12 @@ a {
   color: black;
   font-size: 1.2em;
 }
-
+.row {
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 3%;
+  width: 50%;
+}
 /*contains all the dropdowns and checkboxes*/
 .filters-container {
   text-align: center;
@@ -34,6 +39,8 @@ a {
   height: 5em;
   background: #404040;
   justify-content: space-evenly;
+  margin: auto;
+  width: 62.5%;
 }
 .dropdowns-container .btn-light {
   height: 50%;
@@ -54,7 +61,10 @@ a {
 .levels-container h5 {
   color: #262626;
 }
-
+.forum-post-details {
+  display: flex;
+  justify-content: space-evenly;
+}
 .card h5 {
   font-weight: bold;
 }

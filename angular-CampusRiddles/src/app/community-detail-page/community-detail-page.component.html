@@ -1,75 +1,97 @@
+<app-header></app-header>
 <p *ngIf="loadedCommunityForums.length < 1">No Forums available</p>
 <ul *ngIf="loadedCommunityForums.length >= 1">
-  <li
-    class="forum-post-box"
-    id="forum"
-    *ngFor="let forum of loadedCommunityForums"
-  >
-    <!-- <a href="/">{{ forum.title }}</a> <br /> -->
-    <!-- <button (click)=""></button> -->
-    <h3>{{ forum?.title }}</h3>
-    <br />
-    <h5>
-      {{ forum?.content }}
-    </h5>
-    <br />
-    <div class="forum-post-details">
-      <!-- {{ forum.media }} -->
-      <!-- fix this button later  
-			  <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-        -->
-      <h6>1 hr ago - {{ forum?.hunter_username }}</h6>
-      <h6>{{ loadedComments.length }} comments</h6>
-      <div class="btn-upvote btn_red">
-        <span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
+  <li *ngFor="let forum of loadedCommunityForums">
+    <div class="forum-container">
+      <div class="like-box">
+        <img
+          src="../../assets/images/icons/chevron-up.svg"
+          alt=""
+          role="button"
+        />
+        <h4>1</h4>
+        <img
+          src="../../assets/images/icons/chevron-down.svg"
+          alt=""
+          role="button"
+        />
+      </div>
+      <div class="forum-post-box">
+        <!-- <a href="/">{{ forum.title }}</a> <br /> -->
+        <!-- <button (click)=""></button> -->
+        <h3>{{ forum.title }}</h3>
+        <br />
+        <h5>
+          {{ forum.content }}
+        </h5>
+        <br />
+        <br />
+        <div class="forum-post-details">
+          <h6>1 hr ago - {{ forum.hunter_username }}</h6>
+          <h6>{{ forum.comments.length }} comments</h6>
+
+          <!-- fix this button later  
+        <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
+        --></div>
       </div>
     </div>
-  </li>
-</ul>
-<form #commentForm="ngForm" (ngSubmit)="clickedAddComment(commentForm)">
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1"
-      >Comment as <i>hunterExample</i></label
+    <button (click)="clickCommentDialog()" *ngIf="!showCommentDialog">
+      Reply
+    </button>
+    <form
+      #commentForm="ngForm"
+      (ngSubmit)="clickedAddComment(commentForm)"
+      *ngIf="showCommentDialog"
     >
-    <textarea
-      class="form-control"
-      id="exampleFormControlTextarea1"
-      rows="3"
-      placeholder="What are your thoughts?"
-      name="text"
-      ngModel
-      required
-    ></textarea>
-    <button type="submit">Comment</button>
-  </div>
-</form>
-<br />
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1"
+          >Reply as <i>hunterExample</i></label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          placeholder="What are your thoughts?"
+          name="text"
+          ngModel
+          minlength="3"
+          required
+        ></textarea>
+        <button type="submit">Comment</button>
+      </div>
+    </form>
+    <br />
 
-<p *ngIf="loadedComments.length < 1">No comments</p>
-<ul *ngIf="loadedComments.length >= 1">
-  <li
-    class="forum-post-box"
-    id="comment"
-    *ngFor="let comment of loadedComments"
-  >
-    <!-- <a href="/">{{ forum.title }}</a> <br /> -->
-    <!-- <button (click)=""></button> -->
-    <!-- <h3>{{ comment.text }}</h3> -->
-    <br />
-    <h5>
-      {{ comment?.text }}
-    </h5>
-    <br />
-    <div class="forum-post-details">
-      <!-- {{ forum.media }} -->
-      <!-- fix this button later  
+    <p *ngIf="forum.comments.length < 1">No comments</p>
+    <ul *ngIf="forum.comments.length >= 1">
+      <li
+        class="comment-box"
+        id="comment"
+        *ngFor="let comment of forum.comments"
+      >
+        <!-- <a href="/">{{ forum.title }}</a> <br /> -->
+        <!-- <button (click)=""></button> -->
+        <!-- <h3>{{ comment.text }}</h3> -->
+        <br />
+        <h5>
+          {{ comment?.text }}
+        </h5>
+        <br />
+        <div class="comment-details" id="comment-box">
+          <!-- {{ forum.media }} -->
+          <!-- fix this button later  
 			  <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
         -->
-      <h6>1 hr ago - {{ comment?.hunter_username }}</h6>
+          <h6>1 hr ago - {{ comment?.hunter_username }}</h6>
 
-      <div class="btn-upvote btn_red">
-        <span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
-      </div>
-    </div>
+          <div
+            class="btn-upvote btn_red"
+            role="button"
+            (click)="clickUpvote(comment)"
+          ></div>
+        </div>
+      </li>
+    </ul>
   </li>
+  <br />
 </ul>
