@@ -2,40 +2,34 @@
 <div class="posts-container">
   <!--TEST DATA for a post-->
   <p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
-  <ul *ngIf="loadedRiddles.length >= 1">
-    <li *ngFor="let riddle of loadedRiddles">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">
-            {{ riddle.title }} by {{ riddle.riddlername }}
-          </h2>
-          <p class="card-text">
-            {{ riddle.riddledescription }}
-          </p>
-        </div>
-        <img
-          class="card-img-top"
-          src="../../assets/images/stockLocation3.jpg"
-          alt="Card image cap"
-          height="200"
-        />
 
-        <h5>Levels: {{ riddle.levels.length }}</h5>
-        <h5>Difficulty: {{ riddle.difficulty }}</h5>
-        <h5>Difficulty: {{ riddle.prize }}</h5>
-        <button (click)="attemptRiddle(riddle.id)">Do it.</button>
-        <br />
-      </div>
-      <h2><b>Overview of Levels</b></h2>
+  <div class="card" *ngFor="let riddle of loadedRiddles">
+    <div class="card-body">
+      <h2 class="card-title">{{ riddle.title }} by {{ riddle.riddlername }}</h2>
+      <p class="card-text">
+        {{ riddle.riddledescription }}
+      </p>
+    </div>
+    <img
+      class="card-img-top"
+      src="../../assets/images/stockLocation3.jpg"
+      alt="Card image cap"
+      height="200"
+    />
+
+    <h5>Levels: {{ riddle.levels.length }}</h5>
+    <h5>Difficulty: {{ riddle.difficulty }}</h5>
+    <h5>Difficulty: {{ riddle.prize }}</h5>
+    <button (click)="attemptRiddle(riddle.id)">Start</button>
+    <br />
+
+    <!-- <h2><b>Overview of Levels</b></h2>
+    <br />
+    <div *ngFor="let level of riddle.levels">
+      <h3>Level: {{ level.levelnumber }}</h3>
+      <h4>Question: {{ level.question }}</h4>
+      <hr />
       <br />
-      <div *ngFor="let level of riddle.levels">
-        <h3>Level: {{ level.levelnumber }}</h3>
-        <h4>Question: {{ level.question }}</h4>
-        <hr />
-        <br />
-      </div>
-    </li>
-  </ul>
-
-  >
+    </div> -->
+  </div>
 </div>

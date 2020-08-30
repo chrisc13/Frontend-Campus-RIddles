@@ -3,21 +3,38 @@
   <div id="left-content"></div>
   <div id="right-content">
     <h1>Campus Riddles</h1>
+    <div *ngIf="showSignupSuccess" class="alert alert-success">
+      <strong
+        >Registration successful. Please go to email so we could verify you.
+        :)</strong
+      >
+    </div>
+    <div *ngIf="showLoginSuccess" class="alert alert-success">
+      <strong>Login successful :)</strong>
+    </div>
+    <div *ngIf="showSignupFail" class="alert alert-danger">
+      <strong>Registration failed. :)</strong>
+    </div>
+    <div *ngIf="showLoginFail" class="alert alert-danger">
+      <strong
+        >Login failed. Please make sure username and password are
+        correct.</strong
+      >
+    </div>
 
     <!--SIGN IN-->
+
     <ng-template [ngIf]="isLoginMode">
       <form #authForm="ngForm" (ngSubmit)="onLoginClick(authForm)">
         <h2>{{ isLoginMode ? "Log in" : "Sign Up" }}</h2>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="username">Username:</label>
           <input
-            type="email"
             class="form-control"
-            id="email"
-            name="email"
+            id="username"
+            name="username"
             ngModel
             required
-            email
           />
         </div>
 

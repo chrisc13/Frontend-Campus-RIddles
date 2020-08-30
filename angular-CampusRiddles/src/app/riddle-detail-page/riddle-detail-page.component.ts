@@ -38,7 +38,7 @@ export class RiddleDetailPageComponent implements OnInit {
   attemptRiddle(riddle_id: number) {
     console.log('got to attmept');
     this.subscribeRiddlesService
-      .subscribeToRiddle(riddle_id, 1)
+      .subscribeToRiddle(riddle_id, 17)
       .subscribe((result) => console.log(result));
   }
 }

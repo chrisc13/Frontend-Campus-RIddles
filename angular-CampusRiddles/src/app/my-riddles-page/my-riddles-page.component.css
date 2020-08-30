@@ -1,6 +1,15 @@
+#top.row {
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+h1 {
+  margin-left: 25%;
+}
+
 /*checkboxes*/
 .levels-container {
-  margin-top: 10px;
+  margin-top: 1%;
   display: flex;
   justify-content: center;
 }
@@ -8,13 +17,73 @@
 .levels-container h5 {
   color: #262626;
 }
+#riddles.row {
+  margin-top: 1.5%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 60%;
+}
+#searchBar {
+  border-style: none;
+  text-align: center;
+  height: 45px;
+  background-color: white;
+  font-size: 1.3em;
+  width: 53.5%;
+  margin: auto;
+  border-top-style: hidden;
+  border: 0.5px solid;
+  box-shadow: 0px 2.5px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1.5%;
+  margin-top: 1%;
+}
+.card {
+  height: 500px;
+}
 
+.col-xl-6 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.col {
+  margin: auto;
+  justify-content: center;
+}
 /*container for all progress sections*/
 .progress-container {
   background-color: white;
   line-height: 2;
-  width: 40%;
+  width: 80%;
   margin: auto;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 5%;
+}
+.progress-container button {
+  width: 100%;
+  background-color: #404040;
+  color: white;
+  border: #404040 solid 5px;
+  margin-top: 2%;
+}
+@media (max-width: 990px) {
+  #top.row {
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    margin: auto;
+    font-size: 1.8em;
+  }
+  .col {
+    float: right;
+  }
+  #searchBar {
+    width: 90%;
+  }
+  #riddles.row {
+    width: 100%;
+  }
 }
 
 @media (max-width: 640px) {

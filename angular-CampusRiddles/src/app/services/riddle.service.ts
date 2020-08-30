@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Riddle, RiddleModel } from '../_models/riddle.model';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -20,8 +20,18 @@ export class RiddleService {
     return this.http.get<RiddleModel>(`${this.RIDDLE_URL}/${id.toString()}`);
   }
 
-  getRiddles(): Observable<RiddleModel> {
+  getRiddles(order: string): Observable<RiddleModel> {
+    let params = new HttpParams();
+    // Begin assigning parameters
+    params = params.append('sort', order);
+    return this.http.get<RiddleModel>(`${this.RIDDLE_URL}`, { params: params });
+  }
+  getByAscDiffifulty(): Observable<RiddleModel> {
     return this.http.get<RiddleModel>(`${this.RIDDLE_URL}`);
+  }
+
+  getNewestRiddles(): Observable<RiddleModel> {
+    return this.http.get<RiddleModel>(`${this.RIDDLE_URL}/newest`);
   }
 
   postRiddle(payload: Object): Observable<RiddleModel> {

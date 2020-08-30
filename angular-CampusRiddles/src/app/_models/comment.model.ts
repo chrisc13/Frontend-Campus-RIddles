@@ -9,6 +9,7 @@ export class Comment {
   text: string;
   hunter_username: string;
   forum_id: number;
+  created: Date;
 
   constructor(
     id: number,

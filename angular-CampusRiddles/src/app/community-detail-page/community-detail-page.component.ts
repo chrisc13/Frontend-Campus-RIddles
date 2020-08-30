@@ -11,6 +11,7 @@ import { CommunityForum } from '../_models/community-forum.model';
 import { NgForm } from '@angular/forms';
 import { CommentService } from '../services/comment.service';
 import { Subscription } from 'rxjs';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-community-detail-page',
@@ -22,8 +23,10 @@ export class CommunityDetailPageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private communityForumService: CommunityForumService,
-    private commentService: CommentService
+    private commentService: CommentService,
+    private localStorage: LocalStorageService
   ) {}
+  username: string;
   forumId: number;
   loadedCommunityForums: CommunityForum[] = [];
   loadedComments: Comment[] = [];
@@ -32,6 +35,7 @@ export class CommunityDetailPageComponent implements OnInit, OnDestroy {
   showCommentDialog: boolean = false;
   forumSub: Subscription;
   ngOnInit(): void {
+    //this.username = this.localStorage.retrieve('username');
     this.route.paramMap.subscribe((params: ParamMap) => {
       let id = parseInt(params.get('id'));
       this.forumId = id;
@@ -56,7 +60,7 @@ export class CommunityDetailPageComponent implements OnInit, OnDestroy {
     const newComment: Comment = new Comment(
       null,
       commentForm.controls['text'].value,
-      'hunterExample',
+      'changeThis',
       this.forumId
     );
 

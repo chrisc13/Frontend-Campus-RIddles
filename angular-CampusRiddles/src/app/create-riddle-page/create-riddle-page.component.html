@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <section>
-  <div class="container">
+  <div class="container" *ngIf="!isAddingLevel">
     <br />
     <h1>Good Riddles Keep You Thinking</h1>
     <p class="lead text-muted">
@@ -100,6 +100,7 @@
   <form
     #createRiddleForm="ngForm"
     (ngSubmit)="clickedCreateRiddle(createRiddleForm)"
+    *ngIf="!isAddingLevel"
   >
     <div class="form-group">
       <label for="exampleFormControlInput1">Name of your riddle:</label>
@@ -108,7 +109,7 @@
         id="exampleFormControlInput1"
         name="riddleName"
         ngModel
-        minlength="4"
+        minlength="2"
         required
       />
     </div>
@@ -119,53 +120,22 @@
         id="exampleFormControlInput1"
         name="riddleLocation"
         ngModel
-        minlength="3"
+        minlength="2"
         required
       />
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">How many levels?</label>
-          <select
-            class="form-control"
-            id="exampleFormControlSelect1"
-            name="levels"
-            min="1"
-            ngModel
-            required
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-          </select>
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Difficulty scale?</label>
-          <select
-            class="form-control"
-            id="exampleFormControlSelect1"
-            name="difficulty"
-            min="1"
-            ngModel
-            required
-          >
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
+    <select
+      class="form-control"
+      id="exampleFormControlSelect1"
+      name="difficulty"
+      min="1"
+      ngModel
+      required
+    >
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+    </select>
     <div class="form-group">
       <label for="exampleFormControlTextarea1"
         >What prize will you be offering to the winner?</label
@@ -189,7 +159,7 @@
         rows="3"
         name="riddleDescription"
         ngModel
-        minlength="6"
+        minlength="4"
         required
       ></textarea>
     </div>
@@ -197,10 +167,10 @@
     <div class="submitButton">
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-secondary"
         [disabled]="!createRiddleForm.valid"
       >
-        Create my Riddle
+        Set up Levels
       </button>
       <br />
       <span class="validMessage" *ngIf="!createRiddleForm.valid"
@@ -211,57 +181,66 @@
 </section>
 <br />
 
-<form
-  #createRiddleLevel="ngForm"
-  (ngSubmit)="clickedCreateRiddleLevel(createRiddleLevel)"
->
-  <h3>Level Details</h3>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Level Number:</label>
-    <input
-      class="form-control"
-      id="exampleFormControlInput1"
-      name="levelNumber"
-      ngModel
-      minlength="1"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Question:</label>
-    <input
-      class="form-control"
-      id="exampleFormControlInput1"
-      name="question"
-      ngModel
-      minlength="1"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Answer:</label>
-    <input
-      class="form-control"
-      id="exampleFormControlInput1"
-      name="answer"
-      ngModel
-      minlength="1"
-      required
-    />
-  </div>
-  <div class="submitButton">
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="!createRiddleLevel.valid"
-    >
-      Add Level to Riddle
-    </button>
-    <br />
-    <span class="validMessage" *ngIf="!createRiddleLevel.valid"
-      >Please fill in all fields</span
-    >
-  </div>
-</form>
+<section class="row justify-content-center">
+  <form
+    #createRiddleLevel="ngForm"
+    (ngSubmit)="clickedCreateRiddleLevel(createRiddleLevel)"
+    *ngIf="isAddingLevel"
+  >
+    <h3>Level {{ levels.length + 1 }} Details:</h3>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Question:</label>
+      <input
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="question"
+        ngModel
+        minlength="1"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Answer:</label>
+      <input
+        class="form-control"
+        id="exampleFormControlInput1"
+        name="answer"
+        ngModel
+        minlength="1"
+        required
+      />
+    </div>
+
+    <div class="row">
+      <div class="col" *ngIf="levels.length > 0">
+        <div class="submitButton">
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            (click)="clickedSubmitRiddle()"
+          >
+            Done
+          </button>
+        </div>
+      </div>
+      <div class="col">
+        <div class="submitButton">
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            [disabled]="!createRiddleLevel.valid"
+          >
+            {{ levels.length > 0 ? "Add Another Level" : "Add Level" }}
+          </button>
+          <br />
+          <span class="validMessage" *ngIf="!createRiddleLevel.valid"
+            >Please fill in all fields</span
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
 
 <!-- this area below is for testing api connection-->

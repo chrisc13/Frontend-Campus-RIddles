@@ -9,7 +9,7 @@
           alt=""
           role="button"
         />
-        <h4>1</h4>
+        <h4>{{ forum.votecount }}</h4>
         <img
           src="../../assets/images/icons/chevron-down.svg"
           alt=""
@@ -27,7 +27,7 @@
         <br />
         <br />
         <div class="forum-post-details">
-          <h6>1 hr ago - {{ forum.hunter_username }}</h6>
+          <h6>{{ forum.created }}- {{ forum.hunter_username }}</h6>
           <h6>{{ forum.comments.length }} comments</h6>
 
           <!-- fix this button later  
@@ -45,7 +45,7 @@
     >
       <div class="form-group">
         <label for="exampleFormControlTextarea1"
-          >Reply as <i>hunterExample</i></label
+          >Replying as <i>{{ username }}</i></label
         >
         <textarea
           class="form-control"
@@ -82,7 +82,7 @@
           <!-- fix this button later  
 			  <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
         -->
-          <h6>1 hr ago - {{ comment?.hunter_username }}</h6>
+          <h6>{{ comment.created }} - {{ comment.hunter_username }}</h6>
 
           <div
             class="btn-upvote btn_red"

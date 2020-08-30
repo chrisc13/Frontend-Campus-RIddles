@@ -19,6 +19,7 @@ export class SubscribeRiddleService {
   }
 
   getSubscribedRiddles(hunter_id: number): Observable<RiddleModel> {
+    //hunter_id = 1;
     return this.http.get<RiddleModel>(
       `${this.RIDDLE_URL}/subscribe/${hunter_id.toString()}`
     );

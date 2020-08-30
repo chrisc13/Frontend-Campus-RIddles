@@ -1,4 +1,6 @@
 <app-header></app-header>
+<br />
+<button (click)="logout()">Sign Out</button>
 <body>
   <div class="hero-box">
     <div class="profile-pic">
@@ -19,7 +21,8 @@
     </div>
   </div>
 
-  <div
+  <!--Edit form-->
+  <!-- <div
     class="modal fade"
     id="exampleModalLong"
     tabindex="-1"
@@ -94,12 +97,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="info-container">
     <ul class="list-group">
-      <li class="list-group-item">Cristiano Ronaldo | Arizona</li>
-      <li class="list-group-item">Email: cr7@asu.edu</li>
+      <li class="list-group-item">{{ username }} | Arizona</li>
+      <li class="list-group-item">Email:</li>
       <li class="list-group-item">Password: ******</li>
       <li class="list-group-item">School: ASU</li>
     </ul>

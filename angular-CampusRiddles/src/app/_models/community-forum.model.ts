@@ -17,6 +17,7 @@ export class CommunityForum {
   hunter_username: string;
   hunter_id: number;
   votecount: number;
+  created: Date;
   constructor(
     id: number,
     title: string,

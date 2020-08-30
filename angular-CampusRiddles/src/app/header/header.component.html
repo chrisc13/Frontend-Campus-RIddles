@@ -19,33 +19,37 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <!-- <li class="nav-item" *ngIf="isLoggedIn">
           <a
             routerLink="/create-riddle-page"
             routerLinkActive="active"
             class="link"
             >Create a Riddle</a
           >
-        </li>
+        </li> -->
         <li class="nav-item">
           <a routerLink="/explore" routerLinkActive="active" class="link"
             >Explore</a
           >
         </li>
 
-        <li class="nav-item">
-          <a routerLink="/community" routerLinkActive="active" class="link"
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a
+            routerLink="/community"
+            routerLinkActive="active"
+            class="link"
+            *ngIf="isLoggedIn"
             >Community</a
           >
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a routerLink="/my-riddles" routerLinkActive="active" class="link"
             >My Riddles</a
           >
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a routerLink="/profile" routerLinkActive="active" class="link"
             ><img alt="profile" src="../../assets/images/avatar.png" width="20"
           /></a>

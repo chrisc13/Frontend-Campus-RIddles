@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { from, Subscription } from 'rxjs';
 import { Hunter } from '../_models/hunter.model';
-import { SignUpRequestPayload } from './signupRequestPayload';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +17,10 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   isLoginMode = true;
 
-  signupSuccess = false;
+  showSignupSuccess = false;
+  showLoginSuccess = false;
+  showLoginFail = false;
+  showSignupFail = false;
 
   authSub: Subscription;
 
@@ -30,48 +33,51 @@ export class AuthComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   onLoginClick(form: NgForm) {
-    form.reset();
+    var loginRequest = {
+      username: form.controls['username'].value,
+      password: form.controls['password'].value,
+    };
 
-    const returnHunter: Hunter = new Hunter(
-      null,
-      null,
-      form.controls['email'].value,
-      form.controls['password'].value
-    );
+    this.authSub = this.authService.logIn(loginRequest).subscribe((data) => {
+      if (data) {
+        this.showLoginSuccess = true;
+        this.router.navigateByUrl('/explore');
+      } else {
+        this.showLoginFail = true;
+      }
+    });
 
-    this.authSub = this.authService
-      .signIn(returnHunter)
-      .subscribe((result) =>
-        console.log('Logged in as: ' + result.hunter.username)
-      );
-
-    this.router.navigateByUrl('/explore');
+    //this.router.navigateByUrl('/explore');
 
     //TODO: navigate home once sign in
     // if (this.isLoginMode) {
     //   this.router.navigateByUrl('/explore');
     // }
+    form.reset();
   }
 
   onSignUpClick(form: NgForm) {
-    form.reset();
-    const newHunter: Hunter = new Hunter(
-      null,
-      form.controls['username'].value,
-      form.controls['email'].value,
-      form.controls['password'].value
-    );
+    var signUpRequest = {
+      email: form.controls['email'].value,
+      username: form.controls['username'].value,
+      password: form.controls['password'].value,
+    };
 
     this.authSub = this.authService
-      .signUp(newHunter)
-      .subscribe((result) =>
-        console.log('Sign up and logged in as: ' + result.hunter.username)
+      .signUp(signUpRequest)
+      .subscribe(
+        (result) => (
+          console.log('Registration: ' + result.message),
+          (this.showSignupSuccess = true),
+          (this.isLoginMode = true)
+        )
       );
 
     //TODO: navigate home once sign up
     // if (this.isLoginMode) {
     //   this.router.navigateByUrl('/explore');
     // }
+    form.reset();
   }
 
   ngOnDestroy() {

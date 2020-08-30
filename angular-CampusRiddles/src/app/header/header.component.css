@@ -1,7 +1,7 @@
 .Header {
   font: bold 1em Helvetica, sans-serif;
   color: grey;
-  background-color: #56748d;
+  background-color: #e7e3c29c;
 }
 
 .topnav {
@@ -38,7 +38,7 @@ a:hover {
   cursor: default;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 990px) {
   #my-nav {
     height: 50px;
   }

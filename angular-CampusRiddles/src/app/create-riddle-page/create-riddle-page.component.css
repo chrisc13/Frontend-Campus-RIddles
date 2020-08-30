@@ -1,4 +1,4 @@
-button[type="submit"] {
+.row > button {
   margin-top: 10%;
   height: 45px;
   background-color: #577590;

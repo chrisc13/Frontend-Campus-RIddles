@@ -23,19 +23,22 @@ export class CommunityForumService {
     );
   }
 
-  getCommunityForums(): Observable<CommunityForumModel> {
-    return this.http.get<CommunityForumModel>(`${this.COMMUNITY_URL}`);
-  }
-  postCommunityForum(payload: Object): Observable<CommunityForumModel> {
-    console.log('IN POST COMMUNIYTY FORUM1!!!!!!!');
+  getCommunityForums(order: string): Observable<CommunityForumModel> {
+    let params = new HttpParams();
+    params = params.append('sort', order);
 
+    return this.http.get<CommunityForumModel>(`${this.COMMUNITY_URL}`, {
+      params: params,
+    });
+  }
+
+  postCommunityForum(payload: Object): Observable<CommunityForumModel> {
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
     };
     let myJson = JSON.stringify(payload);
-    console.log('will post', myJson);
 
     return this.http.post<CommunityForumModel>(
       `${this.COMMUNITY_URL}/submit`,

@@ -16,6 +16,7 @@ export class Riddle {
   location: string;
   riddler_id: number;
   levels: Level[];
+  created: Date;
   // add Riddler Class Object here
 
   constructor(
