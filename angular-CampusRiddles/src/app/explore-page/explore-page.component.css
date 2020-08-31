@@ -63,7 +63,7 @@
   height: 45px;
   background-color: white;
   font-size: 1.3em;
-  width: 60%;
+  width: 59%;
   margin: auto;
   border-top-style: hidden;
   border: 0.5px solid;
@@ -75,7 +75,7 @@
 
 .dropdown {
   margin-left: 2%;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
   margin: auto;
 }
 .card button {
@@ -110,7 +110,7 @@
 /*Tablet size*/
 @media (max-width: 990px) {
   #searchBar {
-    width: 90%;
+    width: 89%;
   }
   #riddles.row {
     width: 90%;

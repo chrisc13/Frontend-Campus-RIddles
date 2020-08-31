@@ -62,7 +62,7 @@
   <input
     [(ngModel)]="searchTerm"
     id="searchBar"
-    placeholder="Search by Keyword"
+    placeholder="Search by Keyword (Riddle, Date, etc.)"
   />
   <p *ngIf="loadedCommunityForums.length < 1">No Forums available</p>
 
@@ -78,7 +78,9 @@
           role="button"
           (click)="clickLike(forum)"
         />
-        <h4>{{ forum.votecount }}</h4>
+        <h4>
+          {{ forum.votecount }}
+        </h4>
         <img
           src="../../assets/images/icons/chevron-down.svg"
           alt=""
@@ -99,7 +101,7 @@
         <div class="forum-post-details">
           <h6>{{ forum.created }}- {{ forum.hunter_username }}</h6>
           <h6>{{ forum.comments.length }} comments</h6>
-          <h6>{{ forum.votes.length }} votes</h6>
+          <h6>{{ forum.votes.length }} voters</h6>
           <!-- fix this button later  
         <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
         --></div>

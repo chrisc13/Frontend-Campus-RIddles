@@ -82,7 +82,7 @@
 <input
   id="searchBar"
   type="text"
-  placeholder="Search by Keyword"
+  placeholder="Search by Keyword (School, Riddler, etc.)"
   aria-label="Search"
   [(ngModel)]="searchTerm"
 />
@@ -91,7 +91,7 @@
 <div class="row" id="riddles">
   <div
     class="col-xl-4"
-    *ngFor="let riddle of loadedRiddles | filter: searchTerm;; let odd = odd"
+    *ngFor="let riddle of loadedRiddles | filter: searchTerm; let odd = odd"
   >
     <div>
       <div class="col">

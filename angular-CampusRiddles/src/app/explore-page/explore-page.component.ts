@@ -24,7 +24,6 @@ export class ExplorePageComponent implements OnInit, OnDestroy {
   searchTerm: string;
   isLoggedIn: boolean = false;
   order: string = 'Newest';
-
   constructor(
     private riddleService: RiddleService,
     private router: Router,

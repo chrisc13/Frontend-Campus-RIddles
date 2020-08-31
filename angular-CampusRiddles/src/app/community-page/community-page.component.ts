@@ -17,6 +17,8 @@ export class CommunityPageComponent implements OnInit, OnDestroy {
   searchTerm: string;
   username: string;
   order: string = 'Newest';
+  upvote: boolean = false;
+  downvote: boolean = false;
 
   constructor(
     private communityForumService: CommunityForumService,
