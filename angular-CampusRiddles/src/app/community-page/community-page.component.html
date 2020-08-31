@@ -1,124 +1,112 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Community</title>
-
-</head>
+<app-header></app-header>
 <body>
-	<br>
-	<h1>Community Forums:</h1>
-	<br>
-
-    <div class="form-group1" id="dropdown-">
-        <label for="exampleFormControlSelect1"></label> 
-        <select class="form-control" id="exampleFormControlSelect1">
-            <option>Most Recent</option>
-            <option>Most Replies</option>
-            <option>Most Upvotes</option>
-        </select>
+  <router-outlet></router-outlet>
+  <div class="row" id="top">
+    <div class="col">
+      <h1>Forums</h1>
     </div>
-    
-	<br>
-	<br>
-	<div class="md-form mt-0">
-		<input class="form-control" type="text"
-			placeholder="Search for discussion" aria-label="Search">
-	</div>
-	<div class="posts-container">
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">gUys.. help on riddle #5.</a> <br>
-			<br>
-			<h5>Guys Help!!! I do not understand what i need to do. Lets work together on this.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>1 hr ago - heyRun_X-check</h6>
-				<h6>2 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red">
-					<span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
-				</div>
-			</div>
-		</div>
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">Some help for my takuaches.</a>
-			<br>
-			<br>
-			<h5>Hey cuh, the picture at Hayden Library is part of another
-				riddle at Noble Library.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>3 hr ago - laPerrona69</h6>
-				<h6>2 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-			</div>
-		</div>
+    <!-- <select name="cars" id="cars" aria-placeholder>
+      <option>Sort By:</option>
+      <option value="bynewest">Newest Posts</option>
+      <option value="bylikes">Most likes</option>
+    </select> -->
+    <div class="col">
+      <button type="button" class="btn btn-dark" (click)="clickedCreateTopic()">
+        Create Post
+      </button>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button
+      class="btn btn-secondary dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      {{ order }}
+    </button>
 
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">A hint for riddle #2</a>
-			<br>
-			<br>
-			<h5>When you attempt to solve this part, make sure you have the Campus Riddles App downloaded.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>12 hr ago - messi_isGOAT</h6>
-				<h6>21 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-			</div>
-		</div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a
+        class="dropdown-item"
+        role="button"
+        (click)="sort('Votes (high - low)')"
+        *ngIf="order != 'Difficulty (high - low)'"
+        >Votes (high - low)</a
+      >
+      <a
+        class="dropdown-item"
+        role="button"
+        (click)="sort('Votes (low - high)')"
+        *ngIf="order != 'Difficulty (low - high)'"
+        >Votes (low - high)</a
+      >
+      <a
+        class="dropdown-item"
+        role="button"
+        (click)="sort('Newest')"
+        *ngIf="order != 'Newest'"
+        >Newest</a
+      >
+      <a
+        class="dropdown-item"
+        role="button"
+        (click)="sort('Oldest')"
+        *ngIf="order != 'Oldest'"
+        >Oldest</a
+      >
+    </div>
+  </div>
+  <input
+    [(ngModel)]="searchTerm"
+    id="searchBar"
+    placeholder="Search by Keyword (Riddle, Date, etc.)"
+  />
+  <p *ngIf="loadedCommunityForums.length < 1">No Forums available</p>
 
-		
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">Riddle #3 information</a>
-			<br>
-			<br>
-			<h5>When you attempt to solve this part, make sure you have the Campus Riddles App downloaded.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>12 hr ago - sundevil95</h6>
-				<h6>21 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-			</div>
-		</div>
-
-		<div class="forum-post-box" id="forum">
-			<a href="forum-post.jsp">Guide for riddle 2</a> <br> <br>
-			<h5>When you attempt to solve this part, make sure you have the
-				Campus Riddles App downloaded.</h5>
-			<br>
-			<div class="forum-post-details">
-				<h6>14 hr ago - king95</h6>
-				<h6>21 comments</h6>
-				<!-- fix this button later  
-				<div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
-				-->
-				<div class="btn-upvote btn_red">
-					<span class="thumbsup"></span><a href="#">Helpful?</a><span></span>
-				</div>
-			</div>
-		</div>
-		
-		
-		
-		
-		
-		
-	</div>
-
-	<script src="../../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <ul *ngIf="loadedCommunityForums.length >= 1">
+    <li
+      class="forum-container"
+      *ngFor="let forum of loadedCommunityForums | filter: searchTerm"
+    >
+      <div class="like-box">
+        <img
+          src="../../assets/images/icons/chevron-up.svg"
+          alt=""
+          role="button"
+          (click)="clickLike(forum)"
+        />
+        <h4>
+          {{ forum.votecount }}
+        </h4>
+        <img
+          src="../../assets/images/icons/chevron-down.svg"
+          alt=""
+          role="button"
+          (click)="clickDislike(forum)"
+        />
+      </div>
+      <div class="forum-post-box" role="button" (click)="clickDetail(forum)">
+        <!-- <a href="/">{{ forum.title }}</a> <br /> -->
+        <!-- <button (click)=""></button> -->
+        <h3>{{ forum.title }}</h3>
+        <br />
+        <h5>
+          {{ forum.content }}
+        </h5>
+        <br />
+        <br />
+        <div class="forum-post-details">
+          <h6>{{ forum.created }}- {{ forum.hunter_username }}</h6>
+          <h6>{{ forum.comments.length }} comments</h6>
+          <h6>{{ forum.votes.length }} voters</h6>
+          <!-- fix this button later  
+        <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
+        --></div>
+      </div>
+    </li>
+    <br />
+  </ul>
 </body>
-<footer>
-	
-</footer>
-</html>

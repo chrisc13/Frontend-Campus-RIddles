@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div *ngIf="showPostSuccess" class="alert alert-success">
+  <strong>Successfully posted your Forum to Community!</strong>
+</div>
+
+<!-- TODO: figure out how to override the justify-content-center so that its in the center but not limited with boundaries-->
+
+<form #createForum="ngForm" (ngSubmit)="clickedCreateForum(createForum)">
+  <div class="form-group">
+    <h2><b>Create New Forum</b></h2>
+    <label for="exampleFormControlInput1">Forum Title:</label>
+    <input
+      class="form-control"
+      id="exampleFormControlInput1"
+      name="title"
+      placeholder="What Riddle does this concern?"
+      ngModel
+      required
+      minlength="3"
+    />
+
+    <label for="exampleFormControlTextarea1">Forum Body:</label>
+    <textarea
+      class="form-control"
+      id="exampleFormControlTextarea1"
+      rows="6"
+      name="content"
+      placeholder="Describe your hint or reasoning."
+      ngModel
+      required
+      minlength="6"
+    ></textarea>
+
+    <label for="custom-file">Media Upload (Optional):</label>
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="customFile" />
+      <label class="custom-file-label" for="customFile"
+        >Choose media file</label
+      >
+    </div>
+
+    <br />
+    <div class="submitButton">
+      <button type="submit" class="btn" [disabled]="!createForum.valid">
+        Create Forum
+      </button>
+      <br />
+      <span class="validMessage" *ngIf="!createForum.valid"
+        >Please fill in title and content</span
+      >
+    </div>
+  </div>
+</form>
+
+<br />

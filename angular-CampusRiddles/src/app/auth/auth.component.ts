@@ -1,45 +1,88 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
+import { from, Subscription } from 'rxjs';
+import { Hunter } from '../_models/hunter.model';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit, OnDestroy {
   authForm: FormGroup;
 
   isLoginMode = true;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  showSignupSuccess = false;
+  showLoginSuccess = false;
+  showLoginFail = false;
+  showSignupFail = false;
+
+  authSub: Subscription;
+
+  constructor(private authService: AuthService, private router: Router) {}
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode; //just takes the opposite (like a on/off)
     console.log(this.isLoginMode);
-
-    //add additonal info needed for sign up
   }
 
-  onSubmit(form: NgForm) {
-    //console.log('User is ...' + form.value);
-    form.reset();
+  ngOnInit(): void {}
 
-    let observable = this.http.get('/Riddles');
+  onLoginClick(form: NgForm) {
+    var loginRequest = {
+      username: form.controls['username'].value,
+      password: form.controls['password'].value,
+    };
 
-    observable.subscribe((response) => console.log(response));
+    this.authSub = this.authService.logIn(loginRequest).subscribe((data) => {
+      if (data) {
+        this.showLoginSuccess = true;
+        this.router.navigateByUrl('/explore');
+      } else {
+        this.showLoginFail = true;
+      }
+    });
+
+    //this.router.navigateByUrl('/explore');
 
     //TODO: navigate home once sign in
     // if (this.isLoginMode) {
-    //   this.router.navigateByUrl('/home');
-    //
+    //   this.router.navigateByUrl('/explore');
+    // }
+    form.reset();
   }
 
-  ngOnInit() {
-    /*
-        this.authForm = new FormGroup({
-            email: new FormControl('', [Validators.required, Validators.email]),
-            password: new FormControl('',Validators.required),
-        })*/
+  onSignUpClick(form: NgForm) {
+    var signUpRequest = {
+      email: form.controls['email'].value,
+      username: form.controls['username'].value,
+      password: form.controls['password'].value,
+    };
+
+    this.authSub = this.authService
+      .signUp(signUpRequest)
+      .subscribe(
+        (result) => (
+          console.log('Registration: ' + result.message),
+          (this.showSignupSuccess = true),
+          (this.isLoginMode = true)
+        )
+      );
+
+    //TODO: navigate home once sign up
+    // if (this.isLoginMode) {
+    //   this.router.navigateByUrl('/explore');
+    // }
+    form.reset();
+  }
+
+  ngOnDestroy() {
+    if (this.authSub) {
+      this.authSub.unsubscribe();
+    }
   }
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WebRequestsService } from './web-requests.service';
+import { VoteService } from './vote.service';
 
-describe('WebRequestsService', () => {
-  let service: WebRequestsService;
+describe('VoteService', () => {
+  let service: VoteService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WebRequestsService);
+    service = TestBed.inject(VoteService);
   });
 
   it('should be created', () => {

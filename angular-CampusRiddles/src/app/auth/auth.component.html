@@ -1,23 +1,43 @@
+<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet" />
 <body>
   <div id="left-content"></div>
   <div id="right-content">
     <h1>Campus Riddles</h1>
+    <div *ngIf="showSignupSuccess" class="alert alert-success">
+      <strong
+        >Registration successful. Please go to email so we could verify you.
+        :)</strong
+      >
+    </div>
+    <div *ngIf="showLoginSuccess" class="alert alert-success">
+      <strong>Login successful :)</strong>
+    </div>
+    <div *ngIf="showSignupFail" class="alert alert-danger">
+      <strong>Registration failed. :)</strong>
+    </div>
+    <div *ngIf="showLoginFail" class="alert alert-danger">
+      <strong
+        >Login failed. Please make sure username and password are
+        correct.</strong
+      >
+    </div>
+
+    <!--SIGN IN-->
 
     <ng-template [ngIf]="isLoginMode">
-      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <form #authForm="ngForm" (ngSubmit)="onLoginClick(authForm)">
         <h2>{{ isLoginMode ? "Log in" : "Sign Up" }}</h2>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="username">Username:</label>
           <input
-            type="email"
             class="form-control"
-            id="email"
-            name="email"
+            id="username"
+            name="username"
             ngModel
             required
-            email
           />
         </div>
+
         <div class="form-group">
           <label for="password">Password:</label>
           <input
@@ -30,23 +50,28 @@
             minlength="6"
           />
         </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="!authForm.valid"
-        >
-          {{ isLoginMode ? "Log in" : "Next" }}
-        </button>
+        <div class="submitButton">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!authForm.valid"
+          >
+            {{ isLoginMode ? "Log in" : "Next" }}
+          </button>
+          <br />
+          <span class="validMessage" *ngIf="!authForm.valid"
+            >Please provide valid email and password</span
+          >
+        </div>
       </form>
       <br />
     </ng-template>
-    <button class="switch-btn" (click)="onSwitchMode()" type="button">
-      {{ !isLoginMode ? "Have an account? Log in" : "Dont have an account?" }}
-    </button>
 
+    <!--SIGN UP-->
     <ng-template [ngIf]="!isLoginMode">
-      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <form #authForm="ngForm" (ngSubmit)="onSignUpClick(authForm)">
         <h2>{{ isLoginMode ? "Log in" : "Sign Up" }}</h2>
+        <!--FIRST STEP SIGN UP-->
         <div class="form-group">
           <label for="email">School Email:</label>
           <input
@@ -54,46 +79,54 @@
             class="form-control"
             id="email"
             name="email"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Must be school email"
             ngModel
             required
             email
           />
         </div>
         <div class="form-group">
-          <label for="password">Password:</label>
+          <label for="username">Create Username:</label>
           <input
-            type="password"
             class="form-control"
-            id="password"
-            name="password"
-            ngModel
-            required
-            minlength="6"
-          />
-
-          <!--make this MUST match-->
-          <label for="password">Confirm Password:</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            name="password"
+            name="username"
+            placeholder="6+ characters"
             ngModel
             required
             minlength="6"
           />
         </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          [disabled]="!authForm.valid"
-        >
-          {{ isLoginMode ? "Log in" : "Next" }}
-        </button>
+
+        <div class="form-group">
+          <label for="password">Create Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="6+ characters"
+            ngModel
+            required
+            minlength="6"
+          />
+        </div>
+
+        <div class="submitButton">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!authForm.valid"
+          >
+            {{ isLoginMode ? "Log in" : "Sign Up" }}
+          </button>
+          <br />
+          <span class="validMessage" *ngIf="!authForm.valid"
+            >Please provide valid Email, Username, and Password</span
+          >
+        </div>
       </form>
     </ng-template>
+    <button class="switch-btn" (click)="onSwitchMode()" type="button">
+      {{ !isLoginMode ? "Have an account? Log in" : "Dont have an account?" }}
+    </button>
   </div>
 </body>
