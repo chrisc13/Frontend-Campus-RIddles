@@ -1,5 +1,5 @@
 #top.row {
-  margin-top: 3%;
+  margin-top: 1%;
   margin-bottom: 3%;
 }
 
@@ -34,13 +34,33 @@
   margin-bottom: 20%;
   margin-right: auto;
   margin-left: auto;
-  width: 60%;
+  width: 61%;
 }
 
 .card {
-  height: 300px;
+  height: 350px;
   box-shadow: 0px 0.2px 2px rgba(0, 0, 0, 0.8);
   margin-bottom: 5%;
+}
+.card-title {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-size: 1.6em;
+}
+.card-title > span {
+  font-size: 0.5em;
+  margin-left: 1%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.badge-success {
+  background-color: rgb(20, 82, 20);
+}
+
+.badge-danger {
+  background-color: rgb(128, 12, 12);
 }
 
 .col {
@@ -51,9 +71,15 @@
 .forum-post-details {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 1%;
 }
 .card h5 {
   font-weight: bold;
+}
+
+#cards.col :hover {
+  background-color: #fff;
+  box-shadow: 0 0 3px 3px #fff;
 }
 
 /*search bar for posts*/
@@ -74,7 +100,6 @@
 }
 
 .dropdown {
-  margin-left: 2%;
   padding-bottom: 1%;
   margin: auto;
 }
@@ -113,7 +138,7 @@
     width: 89%;
   }
   #riddles.row {
-    width: 90%;
+    width: 92%;
   }
   .card img {
     height: 55%;
@@ -124,4 +149,7 @@
 }
 /*Phone size*/
 @media (max-width: 640px) {
+  #riddles.row {
+    width: 95%;
+  }
 }

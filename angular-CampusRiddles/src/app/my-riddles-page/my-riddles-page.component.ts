@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SubscribeRiddleService } from '../services/subscribe-riddle.service';
 import { Riddle } from '../_models/riddle.model';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-riddles-page',
@@ -15,7 +16,8 @@ export class MyRiddlesPageComponent implements OnInit {
 
   constructor(
     private subscribeRiddlesService: SubscribeRiddleService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -24,5 +26,9 @@ export class MyRiddlesPageComponent implements OnInit {
     this.subscribeRiddlesService
       .getSubscribedRiddles(17)
       .subscribe((result) => (this.loadedSubscribedRiddles = result.riddles));
+  }
+
+  attemptRiddle(riddleid: number) {
+    this.router.navigate(['/attempt-riddle', riddleid]);
   }
 }

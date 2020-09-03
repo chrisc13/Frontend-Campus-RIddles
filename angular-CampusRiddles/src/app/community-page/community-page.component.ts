@@ -56,12 +56,11 @@ export class CommunityPageComponent implements OnInit, OnDestroy {
   clickedCreateTopic() {
     this.router.navigate(['submit'], { relativeTo: this.route });
   }
-  clickDetail(forum: CommunityForum) {
-    console.log(forum.title);
-    this.router.navigate(['/community', forum.id]);
+  clickDetail(forumid: number) {
+    this.router.navigate(['/community', forumid]);
   }
-  clickLike(forum: CommunityForum) {
-    const newVote: Vote = new Vote(null, 1, this.username, forum.id);
+  clickLike(forumid: number) {
+    const newVote: Vote = new Vote(null, 1, this.username, forumid);
 
     this.myCommunitySub = this.voteService
       .postVote(newVote)
@@ -70,8 +69,8 @@ export class CommunityPageComponent implements OnInit, OnDestroy {
       );
     window.location.reload();
   }
-  clickDislike(forum: CommunityForum) {
-    const newVote: Vote = new Vote(null, 0, this.username, forum.id);
+  clickDislike(forumid: number) {
+    const newVote: Vote = new Vote(null, 0, this.username, forumid);
 
     this.myCommunitySub = this.voteService
       .postVote(newVote)

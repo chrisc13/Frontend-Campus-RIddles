@@ -6,7 +6,7 @@
 
 .topnav {
   overflow: hidden;
-  background-color: #dfdedb;
+  background-color: #dbdfdf;
 }
 
 a {
@@ -18,7 +18,7 @@ a {
 }
 a.title {
   float: left;
-  font: normal 2.5em Bangers, Helvetica, sans-serif;
+  font: normal 2.2em Bangers, Helvetica, sans-serif;
   color: black;
 }
 
@@ -29,7 +29,7 @@ a.link {
 }
 
 a:hover {
-  color: rgb(221, 221, 221);
+  color: rgb(134, 134, 134);
 }
 
 .active {

@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div *ngIf="wrongResponse" class="alert alert-danger">
+  <strong>You're wrong kid.</strong>
+</div>
+<div *ngIf="correctResponse" class="alert alert-success">
+  <strong>Good job Chad.</strong>
+</div>
+<div class="container" id="riddle">
+  <div *ngFor="let riddle of loadedRiddles">
+    <h1>{{ riddle.title }}</h1>
+    <br />
+
+    <div *ngFor="let level of riddle.levels">
+      <h2>
+        <b>Level {{ level.levelnumber }} </b>
+      </h2>
+
+      <form
+        #attemptRiddleForm="ngForm"
+        (ngSubmit)="clickedSubmitAnswer(attemptRiddleForm, level.levelnumber)"
+        class="form-group"
+      >
+        <label for="question">Question:</label>
+        <h3 id="question">{{ level.question }}</h3>
+
+        <label for="exampleFormControlInput1">Your Answer:</label>
+        <input
+          class="form-control"
+          id="exampleFormControlInput1"
+          name="answer"
+          ngModel
+          minlength="1"
+          required
+        />
+
+        <div class="submitButton">
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            [disabled]="!attemptRiddleForm.valid"
+          >
+            Submit
+          </button>
+          <br />
+          <span class="validMessage" *ngIf="!attemptRiddleForm.valid"
+            >Please input your answer</span
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

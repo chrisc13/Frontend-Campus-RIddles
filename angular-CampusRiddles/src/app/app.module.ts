@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
+import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-pa
     PageNotFoundComponent,
     CommunityDetailPageComponent,
     RiddleDetailPageComponent,
+    AttemptRiddlePageComponent,
   ],
   imports: [
     BrowserModule,

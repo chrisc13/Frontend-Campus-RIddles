@@ -76,7 +76,7 @@
           src="../../assets/images/icons/chevron-up.svg"
           alt=""
           role="button"
-          (click)="clickLike(forum)"
+          (click)="clickLike(forum.id)"
         />
         <h4>
           {{ forum.votecount }}
@@ -85,10 +85,10 @@
           src="../../assets/images/icons/chevron-down.svg"
           alt=""
           role="button"
-          (click)="clickDislike(forum)"
+          (click)="clickDislike(forum.id)"
         />
       </div>
-      <div class="forum-post-box" role="button" (click)="clickDetail(forum)">
+      <div class="forum-post-box" role="button" (click)="clickDetail(forum.id)">
         <!-- <a href="/">{{ forum.title }}</a> <br /> -->
         <!-- <button (click)=""></button> -->
         <h3>{{ forum.title }}</h3>

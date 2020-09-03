@@ -1,5 +1,5 @@
 #top.row {
-  margin-top: 3%;
+  margin-top: 1%;
   margin-bottom: 3%;
 }
 
@@ -39,6 +39,11 @@ h1 {
 }
 .card {
   height: 500px;
+}
+
+.col :hover {
+  background-color: #fff;
+  box-shadow: 0 0 5px 5px #fff;
 }
 .btn {
   height: 40px;

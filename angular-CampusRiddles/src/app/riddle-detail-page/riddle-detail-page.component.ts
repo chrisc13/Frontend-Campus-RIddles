@@ -35,10 +35,15 @@ export class RiddleDetailPageComponent implements OnInit {
     });
   }
 
-  attemptRiddle(riddle_id: number) {
+  attemptRiddle(riddleid: number) {
     console.log('got to attmept');
     this.subscribeRiddlesService
-      .subscribeToRiddle(riddle_id, 17)
-      .subscribe((result) => console.log(result));
+      .subscribeToRiddle(riddleid, 17)
+      .subscribe(
+        (result) => (
+          console.log(result),
+          this.router.navigate(['/attempt-riddle', riddleid])
+        )
+      );
   }
 }

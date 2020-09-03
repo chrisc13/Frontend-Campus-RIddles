@@ -6,9 +6,6 @@
   <div class="card" *ngFor="let riddle of loadedRiddles">
     <div class="card-body">
       <h2 class="card-title">{{ riddle.title }} by {{ riddle.riddlername }}</h2>
-      <p class="card-text">
-        {{ riddle.riddledescription }}
-      </p>
     </div>
     <img
       class="card-img-top"
@@ -16,12 +13,26 @@
       alt="Card image cap"
       height="200"
     />
-
-    <h5>Levels: {{ riddle.levels.length }}</h5>
-    <h5>Difficulty: {{ riddle.difficulty }}</h5>
-    <h5>Difficulty: {{ riddle.prize }}</h5>
-    <button (click)="attemptRiddle(riddle.id)">Start</button>
     <br />
+    <p class="card-text">
+      {{ riddle.riddledescription }}
+    </p>
+
+    <div class="row" id="details">
+      <div class="col">
+        <h5><b>Levels:</b>{{ riddle.levels.length }}</h5>
+      </div>
+      <div class="col">
+        <h5><b>Difficulty: </b>{{ riddle.difficulty }}</h5>
+      </div>
+      <div class="col">
+        <h5><b>Prize: </b>{{ riddle.prize }}</h5>
+      </div>
+    </div>
+
+    <h3>{{ riddle.convert() }}</h3>
+
+    <button (click)="attemptRiddle(riddle.id)">Attempt Riddle</button>
 
     <!-- <h2><b>Overview of Levels</b></h2>
     <br />

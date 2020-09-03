@@ -11,7 +11,7 @@ import { CommunitySubmitPageComponent } from './community-submit-page/community-
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
 import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
-
+import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
 //This is my case
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -33,6 +33,7 @@ const routes: Routes = [
       { path: ':id', component: CommunityDetailPageComponent },
     ],
   },
+  { path: 'attempt-riddle/:id', component: AttemptRiddlePageComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'create-riddle-page', component: CreateRiddlePageComponent },
   { path: '**', component: PageNotFoundComponent },

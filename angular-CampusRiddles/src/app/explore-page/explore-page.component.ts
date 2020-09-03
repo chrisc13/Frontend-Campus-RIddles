@@ -17,7 +17,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class ExplorePageComponent implements OnInit, OnDestroy {
   myRiddleSub: Subscription;
-  totalAngularPackages;
   newestThreeRiddles: Riddle[] = [];
   loadedRiddles: Riddle[] = [];
   response: String;
@@ -31,15 +30,7 @@ export class ExplorePageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // Simple GET request with response type <any>
-    //this.service.getAll();
-
     this.getRiddles();
-
-    // this.riddleService
-    //   .getNewestRiddles()
-    //   .subscribe((result) => (this.newestThreeRiddles = result.riddles));
-
     this.isLoggedIn = this.authService.isLoggedIn();
   }
 
@@ -69,8 +60,8 @@ export class ExplorePageComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/create-riddle-page');
   }
 
-  clickDetail(riddle: Riddle) {
-    this.router.navigate(['/explore', riddle.id]);
+  clickDetail(riddleid: number) {
+    this.router.navigate(['/explore', riddleid]);
   }
 
   auth() {

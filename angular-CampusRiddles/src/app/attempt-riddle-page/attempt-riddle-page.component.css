@@ -1,0 +1,43 @@
+#riddle.container {
+  margin-top: 1%;
+}
+
+.form-group {
+  background-color: white;
+  margin: auto;
+  margin-top: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 65%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+}
+label {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+.btn {
+  margin-top: 5%;
+  margin-bottom: 1%;
+  height: 40px;
+  border-radius: 28px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  padding: auto;
+  text-decoration: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+}
+button:disabled {
+  background: grey;
+  border: 1px #577590 solid;
+}
+.submitButton .validMessage {
+  visibility: hidden;
+  color: red;
+  font: normal 1em Helvetica, sans-serif;
+}
+.submitButton:hover .validMessage {
+  visibility: visible;
+}
