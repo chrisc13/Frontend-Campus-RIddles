@@ -1,3 +1,17 @@
 footer {
-  background-color: #dfdedb;
+  background-color: #2e2e2e;
+  color: white;
+}
+a {
+  color: rgb(226, 226, 226);
+}
+h5 {
+  color: rgb(226, 226, 226);
+}
+.footer-copyright {
+  font: normal 1.5em Bangers, Helvetica, sans-serif;
+}
+
+ul {
+  line-height: 1.5em;
 }

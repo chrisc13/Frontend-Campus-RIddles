@@ -13,16 +13,17 @@ a {
   display: block;
   color: #262626;
   text-align: center;
-  padding: 14px 16px;
+  padding: 8px 14px;
   text-decoration: none;
 }
 a.title {
   float: left;
-  font: normal 2.2em Bangers, Helvetica, sans-serif;
+  font: normal 2em Bangers, Helvetica, sans-serif;
   color: black;
 }
 
 a.link {
+  font-weight: bold;
   margin-right: 0px;
   font-size: 1.1em;
   margin-top: 0.9em;
@@ -33,7 +34,6 @@ a:hover {
 }
 
 .active {
-  border-radius: 5%;
   background-color: #f2f2f2;
   cursor: default;
 }

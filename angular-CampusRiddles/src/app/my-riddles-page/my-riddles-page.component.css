@@ -1,10 +1,21 @@
+.top-info {
+  text-align: center;
+  background-color: #e7e3c29c;
+  height: 100px;
+}
+
+.top-info > h1 {
+  font: bold 4em Bangers, Helvetica, sans-serif;
+}
+
 #top.row {
   margin-top: 1%;
   margin-bottom: 3%;
 }
 
-h1 {
-  margin-left: 25%;
+#top.row {
+  margin-top: 1%;
+  margin-bottom: 3%;
 }
 
 /*checkboxes*/
@@ -41,9 +52,9 @@ h1 {
   height: 500px;
 }
 
-.col :hover {
-  background-color: #fff;
-  box-shadow: 0 0 5px 5px #fff;
+#card-col :hover {
+  opacity: 90%;
+  cursor: pointer;
 }
 .btn {
   height: 40px;

@@ -2,9 +2,7 @@
 
 <div class="Header">
   <nav class="navbar navbar-expand-lg navbar-light" id="my-nav">
-    <a routerLink="/home" routerLinkActive="active" class="title"
-      >Campus Riddles</a
-    >
+    <a routerLink="/home" routerLinkActive="actives" class="title">CR</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -19,26 +17,14 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav ml-auto">
-        <!-- <li class="nav-item" *ngIf="isLoggedIn">
-          <a
-            routerLink="/create-riddle-page"
-            routerLinkActive="active"
-            class="link"
-            >Create a Riddle</a
-          >
-        </li> -->
         <li class="nav-item">
           <a routerLink="/explore" routerLinkActive="active" class="link"
             >Explore</a
           >
         </li>
 
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a
-            routerLink="/community"
-            routerLinkActive="active"
-            class="link"
-            *ngIf="isLoggedIn"
+        <li class="nav-item">
+          <a routerLink="/community" routerLinkActive="active" class="link"
             >Community</a
           >
         </li>

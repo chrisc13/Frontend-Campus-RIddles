@@ -1,64 +1,63 @@
 <app-header></app-header>
 <body>
   <router-outlet></router-outlet>
+  <section class="top-info animate__animated animate__fadeInDown">
+    <h1>Forums</h1>
+  </section>
+
   <div class="row" id="top">
     <div class="col">
-      <h1>Forums</h1>
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          {{ order }}
+        </button>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Votes (high - low)')"
+            *ngIf="order != 'Difficulty (high - low)'"
+            >Votes (high - low)</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Votes (low - high)')"
+            *ngIf="order != 'Difficulty (low - high)'"
+            >Votes (low - high)</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Newest')"
+            *ngIf="order != 'Newest'"
+            >Newest</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Oldest')"
+            *ngIf="order != 'Oldest'"
+            >Oldest</a
+          >
+        </div>
+      </div>
     </div>
-    <!-- <select name="cars" id="cars" aria-placeholder>
-      <option>Sort By:</option>
-      <option value="bynewest">Newest Posts</option>
-      <option value="bylikes">Most likes</option>
-    </select> -->
     <div class="col">
       <button type="button" class="btn btn-dark" (click)="clickedCreateTopic()">
         Create Post
       </button>
     </div>
   </div>
-  <div class="dropdown">
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      id="dropdownMenuButton"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      {{ order }}
-    </button>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a
-        class="dropdown-item"
-        role="button"
-        (click)="sort('Votes (high - low)')"
-        *ngIf="order != 'Difficulty (high - low)'"
-        >Votes (high - low)</a
-      >
-      <a
-        class="dropdown-item"
-        role="button"
-        (click)="sort('Votes (low - high)')"
-        *ngIf="order != 'Difficulty (low - high)'"
-        >Votes (low - high)</a
-      >
-      <a
-        class="dropdown-item"
-        role="button"
-        (click)="sort('Newest')"
-        *ngIf="order != 'Newest'"
-        >Newest</a
-      >
-      <a
-        class="dropdown-item"
-        role="button"
-        (click)="sort('Oldest')"
-        *ngIf="order != 'Oldest'"
-        >Oldest</a
-      >
-    </div>
-  </div>
   <input
     [(ngModel)]="searchTerm"
     id="searchBar"
@@ -99,7 +98,7 @@
         <br />
         <br />
         <div class="forum-post-details">
-          <h6>{{ forum.created }}- {{ forum.hunter_username }}</h6>
+          <h6>{{ forum.createdString }}Posted by - hunter365</h6>
           <h6>{{ forum.comments.length }} comments</h6>
           <h6>{{ forum.votes.length }} voters</h6>
           <!-- fix this button later  
@@ -110,3 +109,4 @@
     <br />
   </ul>
 </body>
+<pages-footer></pages-footer>

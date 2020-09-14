@@ -1,23 +1,80 @@
 <app-header></app-header>
-<p>working from home</p>
-<div class="row center">
-  <div class="col">
-    <div ngbDropdown class="d-inline-block">
-      <button
-        class="btn btn-outline-primary"
-        id="dropdownBasic1"
-        ngbDropdownToggle
+<section class="top-info animate__animated animate__fadeInDown">
+  <h4>Welcome To</h4>
+  <h1>Campus Riddles</h1>
+</section>
+<section class="mid-hero">
+  <section class="a animate__animated animate__fadeInLeft">
+    <h3>Challenge Yourself.</h3>
+    <p>
+      Solve riddles and win prizes today!<br /><br />
+      <a role="button" class="btn btn-dark" (click)="clickViewRiddles()"
+        >Try riddles here.</a
       >
-        Toggle dropdown
-      </button>
-
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item">Action - 1</button>
-
-        <button class="dropdown-item">Another Action</button>
-
-        <button class="dropdown-item">Something else is here</button>
+    </p>
+  </section>
+  <section class="b animate__animated animate__fadeInRight">
+    <img
+      src="../../assets/images/landing1.jpg"
+      alt="Card image cap"
+      height="500"
+    />
+  </section>
+</section>
+<section class="about animate__animated animate__fadeInUp">
+  <p>
+    <b>Get stuck?</b> No problem, interact with Riddlers and other Hunters on
+    community forums.<br /><br />
+    <a routerLink="/community" routerLinkActive="active" class="link"
+      >Look through forums here.</a
+    >
+  </p>
+</section>
+<section class="riddles animate__animated animate__fadeInUp">
+  <h3>Featured Riddles</h3>
+  <div class="row" id="topriddles">
+    <div class="col" *ngFor="let riddle of newestThreeRiddles; let i = index">
+      <div
+        class="card"
+        style="max-width: 30rem"
+        role="button"
+        (click)="clickViewRiddleWithId(riddle.id)"
+      >
+        <div class="card-body">
+          <h4 class="card-title">
+            <b>{{ riddle.title }}</b>
+          </h4>
+          <p class="card-text">
+            {{ riddle.riddledescription }}
+          </p>
+          <img
+            class="card-img-top"
+            src="../../assets/images/stockLocation3.jpg"
+            alt="Card image cap"
+            height="160"
+            *ngIf="i == 0"
+          />
+          <img
+            class="card-img-top"
+            src="../../assets/images/stockLocation2.jpg"
+            alt="Card image cap"
+            height="160"
+            *ngIf="i == 1"
+          />
+          <img
+            class="card-img-top"
+            src="../../assets/images/stockLocation1.jpg"
+            alt="Card image cap"
+            height="160"
+            *ngIf="i == 2"
+          />
+        </div>
+        <div class="card-header">
+          <b>Prize: {{ riddle.prize }}</b>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<pages-footer></pages-footer>

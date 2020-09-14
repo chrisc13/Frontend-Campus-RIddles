@@ -1,4 +1,7 @@
 <app-header></app-header>
+<section class="top-info animate__animated animate__fadeInDown">
+  <h1>Attempted Riddles</h1>
+</section>
 <body>
   <h2>
     <b *ngIf="loadedSubscribedRiddles.length < 1">
@@ -8,8 +11,6 @@
   </h2>
 
   <div class="row" id="top" *ngIf="loadedSubscribedRiddles.length > 0">
-    <h1><b>Attempted Riddles:</b></h1>
-
     <!-- <select name="cars" id="cars" aria-placeholder>
       <option>Sort By:</option>
       <option value="bynewest">Newest Posts</option>
@@ -46,6 +47,7 @@
   <div class="row" id="riddles">
     <div
       class="col-xl-6"
+      id="card-col"
       *ngFor="
         let riddle of loadedSubscribedRiddles | filter: searchTerm;
         let i = index

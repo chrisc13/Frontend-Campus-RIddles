@@ -48,8 +48,10 @@ export class AttemptRiddlePageComponent implements OnInit {
 
     if (riddleAnswer.includes(myAnswer)) {
       this.correctResponse = true;
+      this.wrongResponse = false;
     } else {
       this.wrongResponse = true;
+      this.correctResponse = false;
     }
   }
 }

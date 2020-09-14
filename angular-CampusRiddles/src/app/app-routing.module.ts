@@ -14,7 +14,7 @@ import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-pa
 import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
 //This is my case
 const routes: Routes = [
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'my-riddles', component: MyRiddlesPageComponent },

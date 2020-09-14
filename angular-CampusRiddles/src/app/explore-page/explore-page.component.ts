@@ -34,10 +34,6 @@ export class ExplorePageComponent implements OnInit, OnDestroy {
     this.isLoggedIn = this.authService.isLoggedIn();
   }
 
-  test() {
-    console.log('selected SELECT');
-  }
-
   sort(newOrder: string) {
     this.order = newOrder;
 

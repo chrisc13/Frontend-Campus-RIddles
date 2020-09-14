@@ -20,6 +20,7 @@ import { CommunityDetailPageComponent } from './community-detail-page/community-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
 import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
+import { MycompComponent } from './mycomp/mycomp.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle
     CommunityDetailPageComponent,
     RiddleDetailPageComponent,
     AttemptRiddlePageComponent,
+    MycompComponent,
   ],
   imports: [
     BrowserModule,
