@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateCrosswordComponent implements OnInit {
 
+  numOfWords: Array<number> = [1,2,3,4,5,6,7,8,9,10];
+  selectedCount: number;
+  checked: boolean;
+
+
   constructor() { }
 
   ngOnInit(): void {

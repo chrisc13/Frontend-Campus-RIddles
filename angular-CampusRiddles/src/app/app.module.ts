@@ -28,6 +28,8 @@ import { ExploreComponent } from './views/explore/explore.component';
 import { CreateComponent } from './views/create/create.component';
 import { LoginComponent } from './views/authenticate/login/login.component';
 import { SignupComponent } from './views/authenticate/signup/signup.component';
+import { CrosswordModule } from './modules/crossword/crossword.module';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ import { SignupComponent } from './views/authenticate/signup/signup.component';
     ExploreComponent,
     CreateComponent,
     LoginComponent,
-    SignupComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,7 @@ import { SignupComponent } from './views/authenticate/signup/signup.component';
     AppRoutingModule,
     NgxWebstorageModule.forRoot(),
     Ng2SearchPipeModule,
+    CrosswordModule
   ],
   // if an error occurs, its probably because i didnt add "WebRequestService" as a provider
   providers: [RiddleService],

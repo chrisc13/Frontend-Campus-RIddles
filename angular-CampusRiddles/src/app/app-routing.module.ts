@@ -13,6 +13,7 @@ import { CommunityDetailPageComponent } from './community-detail-page/community-
 import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
 import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
 import { CreateJigsawComponent } from './modules/jigsaw/create-jigsaw/create-jigsaw.component';
+import { CreateCrosswordComponent } from './modules/crossword/create-crossword/create-crossword.component'
 //This is my case
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'create-riddle-page', component: CreateRiddlePageComponent },
   {path: 'createJigsaw', component: CreateJigsawComponent },
-  { path: '**', component: PageNotFoundComponent },
+  { path: 'createCrossword', component: CreateCrosswordComponent},
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
