@@ -20,7 +20,7 @@ import { CommunityDetailPageComponent } from './community-detail-page/community-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
 import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
-import { MycompComponent } from './mycomp/mycomp.component';
+//import { MycompComponent } from './mycomp/mycomp.component';
 import { HomeComponent } from './views/home/home.component';
 import { CommunityComponent } from './views/community/community.component';
 import { MyriddlesComponent } from './views/myriddles/myriddles.component';
@@ -45,7 +45,6 @@ import { SignupComponent } from './views/authenticate/signup/signup.component';
     CommunityDetailPageComponent,
     RiddleDetailPageComponent,
     AttemptRiddlePageComponent,
-    MycompComponent,
     HomeComponent,
     CommunityComponent,
     MyriddlesComponent,
