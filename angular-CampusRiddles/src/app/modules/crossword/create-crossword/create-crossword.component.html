@@ -1,3 +1,21 @@
-<p>create-crossword works!</p>
+<h1>Create a Crossword Puzzle</h1>
 
-<p-dropdown [options]="numOfWords" [(ngModel)]="selectedCount" ></p-dropdown>
+<p>How many words will you be using?</p>
+<select (change)="updateInputBoxes($event)">
+    <option value="">Select Count</option>
+    <option *ngFor="let num of dropdown_numbers" value={{num}}> {{num}} </option>
+</select>
+
+<div *ngIf="inputBoxes">
+    <form #allWords = "ngForm" (ngSubmit)= "onClickSubmit(allWords.value)" >
+        <label>Enter the Words for your Crossword</label>
+        <div *ngFor="let box of createInputBoxes">
+            <input required ngModel name="word_{{box}}" #word="ngModel" class="form-control">
+            <div class="alert alert-danger" *ngIf=" word.touched && !word.valid"> Missing word, please insert a word </div> 
+        </div>
+        <button type="submit" value="submit">Submit</button>
+    </form>
+</div>
+
+
+
