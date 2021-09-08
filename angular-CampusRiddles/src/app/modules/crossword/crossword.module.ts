@@ -7,11 +7,12 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
+import { PreviewCrosswordComponent } from './preview-crossword/preview-crossword.component';
 
 
 
 @NgModule({
-  declarations: [CreateCrosswordComponent],
+  declarations: [CreateCrosswordComponent, PreviewCrosswordComponent],
   exports: [CreateCrosswordComponent],
   imports: [
     CommonModule, BrowserModule, DropdownModule, FormsModule, BrowserAnimationsModule, InputSwitchModule, InputTextModule
