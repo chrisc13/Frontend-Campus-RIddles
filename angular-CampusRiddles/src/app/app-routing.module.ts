@@ -14,12 +14,17 @@ import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-pa
 import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
 import { CreateJigsawComponent } from './modules/jigsaw/create-jigsaw/create-jigsaw.component';
 import { CreateCrosswordComponent } from './modules/crossword/create-crossword/create-crossword.component'
+import { PreviewCrosswordComponent } from './modules/crossword/preview-crossword/preview-crossword.component';
+
 //This is my case
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'my-riddles', component: MyRiddlesPageComponent },
+  {
+    path: 'preview-crossword', component: PreviewCrosswordComponent
+  },
   {
     path: 'explore',
     children: [

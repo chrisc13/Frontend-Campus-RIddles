@@ -29,6 +29,10 @@ import { CreateComponent } from './views/create/create.component';
 import { LoginComponent } from './views/authenticate/login/login.component';
 import { SignupComponent } from './views/authenticate/signup/signup.component';
 import { CrosswordModule } from './modules/crossword/crossword.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -62,7 +66,11 @@ import { CrosswordModule } from './modules/crossword/crossword.module';
     AppRoutingModule,
     NgxWebstorageModule.forRoot(),
     Ng2SearchPipeModule,
-    CrosswordModule
+    CrosswordModule,
+    MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule
   ],
   // if an error occurs, its probably because i didnt add "WebRequestService" as a provider
   providers: [RiddleService],

@@ -26,6 +26,7 @@
             <input required [(ngModel)]="words[box]" name="word_{{box+1}}" #word="ngModel" class="form-control">
             <div class="alert alert-danger" *ngIf=" word.touched && !word.valid"> Missing word, please insert a word </div> 
         </div>
-        <button type="submit" value="submit">Submit</button>
+        <!-- <button type="submit" value="submit">Submit</button> -->
+        <button mat-button (click)="openDialog()" type="submit" value="submit">Submit</button>
     </form>
 </div>

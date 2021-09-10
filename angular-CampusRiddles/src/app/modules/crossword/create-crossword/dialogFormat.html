@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Your Crossword</h1>
+<div mat-dialog-content>
+  Words you chose are: 
+  <ul>
+    <li *ngFor="let word of data">{{word}}</li>
+  </ul>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>

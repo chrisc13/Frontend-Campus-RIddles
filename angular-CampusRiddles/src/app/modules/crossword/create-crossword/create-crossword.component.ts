@@ -1,6 +1,10 @@
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
-import { Component, OnInit } from '@angular/core';
-import { $ } from 'protractor';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogDataExampleDialog } from './dialog-data-example-dialog.component';
+import { DialogData } from './animalInter';
+import { Router } from '@angular/router';
+import { Crossword } from '../../../_models/crossword.model';
+import { CrosswordService } from './../../../services/crossword.service';
 
 
 @Component({
@@ -12,30 +16,49 @@ export class CreateCrosswordComponent implements OnInit {
 
   public dropdown_numbers: Array<number> = [1,2,3,4,5];
   public createInputBoxes: any; // populated by dropdown menu with numbers then used as a # amount to print boxes
-  // public inputBoxes: any; // populated by the dropdown menu with numbers
   public inputBoxes: any;
   public words: any[] = [];
-  private keys: Array<string>;
-  public eventGrabber: any;
 
 
-  constructor() { }
+  constructor(public dialog: MatDialog, 
+              public router: Router, 
+              private crosswordservice: CrosswordService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  updateInputBoxes(event) { this.createInputBoxes = new Array(+this.inputBoxes).fill(undefined).map( (x,i) => i ); }
 
-  updateInputBoxes(event) {
-    // this.createInputBoxes = new Array(+this.inputBoxes).fill(undefined).map( (x,i) => i+1 );
-    this.createInputBoxes = new Array(+this.inputBoxes).fill(undefined).map( (x,i) => i );
-
-  }
-
-  onClickSubmit(data) {
-
+  onClickSubmit(data) 
+  {
     console.log("onclick submit data");
-    console.log(data);
     console.log(this.words);
+
+  }
+  openDialog( ) {
+
+    const dialogRef = this.dialog.open(DialogDataExampleDialog, {
+      data: this.words
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`dialog result: ${result}`);
+      if (result){
+        console.log("result was true, about to post request");
+        let crossword = new Crossword("test1", "test2", this.words);
+
+        this.crosswordservice.postCrosswords(crossword)
+        .subscribe(
+          (result) => (
+            console.log("received result: " + result)
+          )
+        );
+
+        //this.router.navigateByUrl('/preview-crossword');
+      } else {
+        console.log("error in routing to preview crossword");
+      }
+
+    });
     
   }
 
