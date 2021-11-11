@@ -1,1 +1,112 @@
-<p>community works!</p>
+<app-header></app-header>
+<body>
+  <router-outlet></router-outlet>
+  <section class="top-info animate__animated animate__fadeInDown">
+    <h1>Forums</h1>
+  </section>
+
+  <div class="row" id="top">
+    <div class="col">
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          {{ order }}
+        </button>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Votes (high - low)')"
+            *ngIf="order != 'Difficulty (high - low)'"
+            >Votes (high - low)</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Votes (low - high)')"
+            *ngIf="order != 'Difficulty (low - high)'"
+            >Votes (low - high)</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Newest')"
+            *ngIf="order != 'Newest'"
+            >Newest</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Oldest')"
+            *ngIf="order != 'Oldest'"
+            >Oldest</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-dark" (click)="clickedCreateTopic()">
+        Create Post
+      </button>
+    </div>
+  </div>
+
+  <input
+    [(ngModel)]="searchTerm"
+    id="searchBar"
+    placeholder="Search by Keyword (Riddle, Date, etc.)"
+  />
+  <p *ngIf="loadedCommunityForums.length < 1">No Forums available</p>
+
+  <ul *ngIf="loadedCommunityForums.length >= 1">
+    <li
+      class="forum-container"
+      *ngFor="let forum of loadedCommunityForums | filter: searchTerm"
+    >
+      <div class="like-box">
+        <img
+          src="../../assets/images/icons/chevron-up.svg"
+          alt=""
+          role="button"
+          (click)="clickLike(forum.id)"
+        />
+        <h4>
+          {{ forum.votecount }}
+        </h4>
+        <img
+          src="../../assets/images/icons/chevron-down.svg"
+          alt=""
+          role="button"
+          (click)="clickDislike(forum.id)"
+        />
+      </div>
+      <div class="forum-post-box" role="button" (click)="clickDetail(forum.id)">
+        <!-- <a href="/">{{ forum.title }}</a> <br /> -->
+        <!-- <button (click)=""></button> -->
+        <h3>{{ forum.title }}</h3>
+        <br />
+        <h5>
+          {{ forum.content }}
+        </h5>
+        <br />
+        <br />
+        <div class="forum-post-details">
+          <h6>{{ forum.createdString }}Posted by - hunter365</h6>
+          <h6>{{ forum.comments.length }} comments</h6>
+          <h6>{{ forum.votes.length }} voters</h6>
+          <!-- fix this button later  
+        <div class="btn-upvote btn_red"><span class="thumbsup"></span><a href="#">Helpful?</a><span></span></div>
+        --></div>
+      </div>
+    </li>
+    <br />
+  </ul>
+</body>
+<pages-footer></pages-footer>

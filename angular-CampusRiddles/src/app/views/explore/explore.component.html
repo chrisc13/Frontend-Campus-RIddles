@@ -1,1 +1,128 @@
-<p>explore works!</p>
+<app-header></app-header>
+<router-outlet></router-outlet>
+<section class="top-info animate__animated animate__fadeInDown">
+  <h1>Riddles</h1>
+</section>
+<body>
+  <button (click)="auth()" *ngIf="!isLoggedIn">Sign In/ Sign Up</button>
+  <div class="row" id="top">
+    <div class="col">
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          {{ order }}
+        </button>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Difficulty (high - low)')"
+            *ngIf="order != 'Difficulty (high - low)'"
+            >Difficulty (high - low)</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Difficulty (low - high)')"
+            *ngIf="order != 'Difficulty (low - high)'"
+            >Difficulty (low - high)</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Newest')"
+            *ngIf="order != 'Newest'"
+            >Newest</a
+          >
+          <a
+            class="dropdown-item"
+            role="button"
+            (click)="sort('Oldest')"
+            *ngIf="order != 'Oldest'"
+            >Oldest</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-dark" (click)="createRiddle()">
+        Create Riddle
+      </button>
+    </div>
+  </div>
+
+  <input
+    id="searchBar"
+    type="text"
+    placeholder="Search by Keyword (School, Riddler, etc.)"
+    aria-label="Search"
+    [(ngModel)]="searchTerm"
+  />
+
+  <p *ngIf="loadedRiddles.length < 1">No Riddles available</p>
+
+  <div class="row" id="riddles">
+    <div
+      class="col-xl-4"
+      *ngFor="let riddle of loadedRiddles | filter: searchTerm; let odd = odd"
+    >
+      <div class="col" id="cards">
+        <div class="card" role="button" (click)="clickDetail(riddle.id)">
+          <div class="card-body">
+            <div class="card-title">
+              {{ riddle.title }}
+            </div>
+            <span
+              class="badge badge-pill badge-success"
+              *ngIf="riddle.difficulty == 1"
+              >Easy</span
+            >
+            <span
+              class="badge badge-pill badge-info"
+              *ngIf="riddle.difficulty == 2"
+              >Medium</span
+            >
+            <span
+              class="badge badge-pill badge-danger"
+              *ngIf="riddle.difficulty == 3"
+              >Hard</span
+            >
+          </div>
+          <img
+            class="card-img-top"
+            src="../../assets/images/stockLocation3.jpg"
+            alt="Card image cap"
+            height="130"
+            *ngIf="odd"
+          />
+          <img
+            class="card-img-top"
+            src="../../assets/images/stockLocation2.jpg"
+            alt="Card image cap"
+            height="130"
+            *ngIf="!odd"
+          />
+          <br />
+          <p class="card-text">
+            {{ riddle.riddledescription }}
+          </p>
+          <div class="forum-post-details">
+            <h5>Levels:{{ riddle.levels.length }}</h5>
+            <h5>Prize:{{ riddle.prize }}</h5>
+          </div>
+          <div class="card-footer text-muted">
+            Posted {{ riddle.createdstring }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<pages-footer></pages-footer>

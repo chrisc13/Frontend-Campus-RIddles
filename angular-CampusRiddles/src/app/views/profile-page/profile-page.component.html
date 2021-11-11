@@ -1,1 +1,123 @@
-<p>profile-page works!</p>
+<app-header></app-header>
+<section class="top-info animate__animated animate__fadeInDown">
+  <h1>Profile</h1>
+</section>
+<br />
+<button class="btn btn-dark" (click)="logout()">Sign Out</button>
+<body>
+  <div class="hero-box">
+    <div class="profile-pic">
+      <img alt="avatar" src="../../assets/images/user2.jpg" />
+    </div>
+  </div>
+
+  <div class="edit-box">
+    <div class="edit-icon">
+      <a
+        href=""
+        class="icon"
+        data-toggle="modal"
+        data-target="#exampleModalLong"
+      >
+        <img alt="menu" src="../assets/images/icons/editIcon.png" width="35" />
+      </a>
+    </div>
+  </div>
+
+  <!--Edit form-->
+  <!-- <div
+    class="modal fade"
+    id="exampleModalLong"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Edit Profile</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label"
+                >Email:</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  readonly
+                  class="form-control-plaintext"
+                  id="staticEmail"
+                  value="email@example.com"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label"
+                >Password:</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="mypass123"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-2 col-form-label"
+                >School:</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="ASU"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="info-container">
+    <ul class="list-group">
+      <li class="list-group-item">{{ username }} | Arizona</li>
+      <li class="list-group-item">Email: chris@mail.com</li>
+      <li class="list-group-item">Password: ******</li>
+      <li class="list-group-item">School: ASU</li>
+    </ul>
+  </div>
+  <br />
+  <br />
+  <div class="info-container">
+    <ul class="list-group">
+      <li class="list-group-item">Other</li>
+      <li class="list-group-item">Other</li>
+      <li class="list-group-item">Other</li>
+      <li class="list-group-item">Other</li>
+    </ul>
+  </div>
+</body>

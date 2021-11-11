@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { MyRiddlesPageComponent } from './my-riddles-page/my-riddles-page.component';
-import { ExplorePageComponent } from './explore-page/explore-page.component';
+import { HomeComponent } from './views/home/home.component';
+import { ProfilePageComponent } from './views/profile-page/profile-page.component';
+import { MyriddlesComponent } from './views/myriddles/myriddles.component';
+import { ExploreComponent } from './views/explore/explore.component';
 import { CommunityPageComponent } from './community-page/community-page.component';
 import { AuthComponent } from './auth/auth.component';
-import { CreateRiddlePageComponent } from './create-riddle-page/create-riddle-page.component';
+import { CreateComponent } from './views/create/create.component';
 import { CommunitySubmitPageComponent } from './community-submit-page/community-submit-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
@@ -19,16 +19,16 @@ import { PreviewCrosswordComponent } from './modules/crossword/preview-crossword
 //This is my case
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomePageComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfilePageComponent },
-  { path: 'my-riddles', component: MyRiddlesPageComponent },
+  { path: 'my-riddles', component: MyriddlesComponent },
   {
     path: 'preview-crossword', component: PreviewCrosswordComponent
   },
   {
     path: 'explore',
     children: [
-      { path: '', component: ExplorePageComponent },
+      { path: '', component: ExploreComponent },
       { path: ':id', component: RiddleDetailPageComponent },
     ],
   },
@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   { path: 'attempt-riddle/:id', component: AttemptRiddlePageComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'create-riddle-page', component: CreateRiddlePageComponent },
+  { path: 'create-riddle-page', component: CreateComponent },
   {path: 'createJigsaw', component: CreateJigsawComponent },
   { path: 'createCrossword', component: CreateCrosswordComponent},
   { path: '**', component: PageNotFoundComponent }
@@ -57,14 +57,14 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 export const routingComponents = [
-  HomePageComponent,
+  HomeComponent,
   ProfilePageComponent,
-  MyRiddlesPageComponent,
+  MyriddlesComponent,
   CommunityPageComponent,
-  ExplorePageComponent,
+  ExploreComponent,
   AuthComponent,
   CommunitySubmitPageComponent,
-  CreateRiddlePageComponent,
+  CreateComponent,
   CommunityDetailPageComponent,
   RiddleDetailPageComponent,
   PageNotFoundComponent,
