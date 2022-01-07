@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Hunter, HunterModel } from '../_models/hunter.model';
 import { AuthResponse } from '../auth/authResponse';
-import { LocalStorageService } from 'ngx-webstorage';
+//import { LocalStorageService } from 'ngx-webstorage';
 import { map, tap } from 'rxjs/operators';
+import { User } from '../_models/user.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,11 +15,21 @@ export class AuthService {
     username: this.getUsername(),
   };
   readonly AUTH_URL;
+  private userSubject: BehaviorSubject<User>;
+  public user: Observable<User>;
+
+
   constructor(
     private http: HttpClient,
-    private localStorage: LocalStorageService
+    //private localStorage: LocalStorageService
   ) {
     this.AUTH_URL = 'api/auth';
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+    this.user = this.userSubject.asObservable();
+  }
+
+  public get userValue(): User {
+    return this.userSubject.value
   }
 
   signUp(payload: Object): Observable<AuthResponse> {
@@ -39,7 +50,7 @@ export class AuthService {
   logIn(payload: Object): Observable<boolean> {
     let options = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }),
     };
     return this.http
@@ -51,13 +62,19 @@ export class AuthService {
       .pipe(
         map((data) => {
           if (data.message == 'SUCCESS') {
-            this.localStorage.store(
+            localStorage.setItem(
               'authenticationToken',
               data.authenticationToken
             );
-            this.localStorage.store('username', data.username);
-            this.localStorage.store('refreshToken', data.refreshToken);
-            this.localStorage.store('refreshToken', data.expiresAt);
+            localStorage.setItem('username', data.username);
+            localStorage.setItem('userid', data.id.toString())
+
+            // TODO: temporary solution. replace with real refresh tokens soon
+            if (data.refreshToken && data.expiresAt)
+            {
+              localStorage.setItem('refreshToken', data.refreshToken);
+              localStorage.setItem('expiresAt', data.expiresAt.toString());
+            }
             return true;
           }
           return false;
@@ -76,26 +93,28 @@ export class AuthService {
           throwError(error);
         }
       );
-    this.localStorage.clear('authenticationToken');
-    this.localStorage.clear('username');
-    this.localStorage.clear('refreshToken');
-    this.localStorage.clear('expiresAt');
+    localStorage.removeItem('authenticationToken');
+    localStorage.removeItem('username');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('expiresAt');
+    localStorage.removeItem('userid');
   }
 
   isLoggedIn(): boolean {
-    return this.getJwtToken()! + null;
+    //return this.getJwtToken()! + null;
+    return this.getJwtToken() == null ? false : true;
   }
 
   getJwtToken() {
-    return this.localStorage.retrieve('authenticationToken');
+    return localStorage.getItem('authenticationToken');
   }
 
   getUsername() {
-    return this.localStorage.retrieve('username');
+    return localStorage.getItem('username');
   }
 
   getRefreshToken() {
-    return this.localStorage.retrieve('refreshToken');
+    return localStorage.getItem('refreshToken');
   }
 
   getUserDetails(hunter_username: string): Observable<HunterModel> {
@@ -110,11 +129,11 @@ export class AuthService {
       .post<AuthResponse>(`${this.AUTH_URL}/login`, this.refreshTokenPayload)
       .pipe(
         tap((response) => {
-          this.localStorage.store(
+          localStorage.setItem(
             'authenticationToken',
             response.authenticationToken
           );
-          this.localStorage.store('expiresAt', response.expiresAt);
+          localStorage.setItem('expiresAt', response.expiresAt.toString());
         })
       );
   }

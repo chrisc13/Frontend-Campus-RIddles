@@ -12,25 +12,45 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CommunityDetailPageComponent } from './community-detail-page/community-detail-page.component';
 import { RiddleDetailPageComponent } from './riddle-detail-page/riddle-detail-page.component';
 import { AttemptRiddlePageComponent } from './attempt-riddle-page/attempt-riddle-page.component';
-import { CreateJigsawComponent } from './modules/jigsaw/create-jigsaw/create-jigsaw.component';
+
 import { CreateCrosswordComponent } from './modules/crossword/create-crossword/create-crossword.component'
-import { PreviewCrosswordComponent } from './modules/crossword/preview-crossword/preview-crossword.component';
+
+import { AuthGuard } from './auth/auth.guard';
+import { Role } from './_models/role';
+import { ApplicationComponent } from './views/forms/application/application.component';
 
 //This is my case
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfilePageComponent },
-  { path: 'my-riddles', component: MyriddlesComponent },
+  { path: '', 
+    redirectTo: 'home', 
+    pathMatch: 'full' 
+  },
+  { path: 'auth', 
+    component: AuthComponent 
+  },
+  { path: 'home', 
+    component: HomeComponent 
+  },
+  { path: 'profile', 
+    component: ProfilePageComponent
+    //canActivate: [AuthGuard]
+    //, data: { roles: [Role.Admin, Role.Hunter] } 
+  },
   {
-    path: 'preview-crossword', component: PreviewCrosswordComponent
+    path: 'application',
+    component: ApplicationComponent
+  },
+  { path: 'my-riddles', 
+    component: MyriddlesComponent, 
+    canActivate: [AuthGuard], 
+    data: { roles: [Role.Admin, Role.Hunter] }
   },
   {
     path: 'explore',
     children: [
       { path: '', component: ExploreComponent },
       { path: ':id', component: RiddleDetailPageComponent },
-    ],
+    ]
   },
   {
     path: 'community',
@@ -38,12 +58,10 @@ const routes: Routes = [
       { path: '', component: CommunityPageComponent },
       { path: 'submit', component: CommunitySubmitPageComponent },
       { path: ':id', component: CommunityDetailPageComponent },
-    ],
+    ]
   },
   { path: 'attempt-riddle/:id', component: AttemptRiddlePageComponent },
-  { path: 'auth', component: AuthComponent },
   { path: 'create-riddle-page', component: CreateComponent },
-  {path: 'createJigsaw', component: CreateJigsawComponent },
   { path: 'createCrossword', component: CreateCrosswordComponent},
   { path: '**', component: PageNotFoundComponent }
 ];

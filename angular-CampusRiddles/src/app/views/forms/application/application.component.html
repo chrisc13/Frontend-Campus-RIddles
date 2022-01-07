@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+<div class="summary">
+    <section>
+        <p>
+            The Riddler application requests personal information and identity for the purpose of protecting our users. Your information will be stored 
+            privately and will only be used under the circumstance of suspected rule and policy violation. These measures are solely for the purpose of 
+            protecting our users and creating a safe space for Hunters and puzzle masters like yourself!
+
+            Please click agree to access the form. 
+        </p>
+        <button (click)="onClick()">Agree</button>
+    </section>
+</div>
+
+<div class="container">
+    <h2>Riddler Application</h2>
+    <form #application="ngForm" (ngSubmit)="onSubmit(application.value)">
+
+        <div class="form-group">
+            <label>Legal First Name</label>
+            <input type="text" class="form-control" name="firstname" #fname="ngModel" [disabled]="!agreementRead" ngModel> 
+            <div class="alert alert-danger" *ngIf=" fname.touched && !fname.valid"> Please add your first name </div>
+        </div>
+
+        <div class="form-group">
+            <label>Legal Last Name</label>
+            <input type="text" class="form-control" name="lastname" #lname="ngModel" [disabled]="!agreementRead" ngModel>
+            <div class="alert alert-danger" *ngIf=" lname.touched && !lname.valid"> Please add your last name </div>
+        </div>
+
+        <div class="form-group">
+            <label>Phone number</label>
+            <input type="number" class="form-control" name="phonenumber" #phone="ngModel" [disabled]="!agreementRead" ngModel>
+            <div class="alert alert-danger" *ngIf=" phone.touched && !phone.valid"> Please enter your phone number </div>
+        </div>
+
+        <div ngModelGroup="identification">
+            <div class="form-group">
+                <label>Driver's License or Passport (Front)</label>
+                <input type="file" class="form-control" name="identificationfront" [disabled]="!agreementRead" ngModel>
+            </div>
+    
+            <div class="form-group">
+                <label>Driver's License or Passport (Back) </label>
+                <input type="file" class="form-control" name="identificationback" [disabled]="!agreementRead" ngModel>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!application.form.valid">Submit</button>
+    </form>
+</div>

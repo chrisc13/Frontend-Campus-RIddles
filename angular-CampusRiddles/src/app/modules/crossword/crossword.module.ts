@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
-import { PreviewCrosswordComponent } from './preview-crossword/preview-crossword.component';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogDataExampleDialog } from './create-crossword/dialog-data-example-dialog.component';
@@ -15,7 +15,7 @@ import { DialogDataExampleDialog } from './create-crossword/dialog-data-example-
 
 
 @NgModule({
-  declarations: [CreateCrosswordComponent, PreviewCrosswordComponent, DialogDataExampleDialog],
+  declarations: [CreateCrosswordComponent, DialogDataExampleDialog],
   exports: [CreateCrosswordComponent],
   imports: [
     CommonModule, BrowserModule, DropdownModule, FormsModule, BrowserAnimationsModule, InputSwitchModule, InputTextModule,

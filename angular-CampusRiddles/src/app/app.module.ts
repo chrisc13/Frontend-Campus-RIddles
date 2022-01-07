@@ -32,6 +32,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { QAComponent } from './views/create/experiences/qa/qa.component';
+import { ImageComponent } from './views/create/experiences/image/image.component';
+import { PdfComponent } from './views/create/experiences/pdf/pdf.component';
+import { AudioComponent } from './views/create/experiences/audio/audio.component';
+import { VideoComponent } from './views/create/experiences/video/video.component';
+import { TextComponent } from './views/create/experiences/text/text.component';
+import { ApplicationComponent } from './views/forms/application/application.component';
+import { MatCardModule} from '@angular/material/card'
 
 
 @NgModule({
@@ -54,7 +62,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ExploreComponent,
     CreateComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    QAComponent,
+    ImageComponent,
+    PdfComponent,
+    AudioComponent,
+    VideoComponent,
+    TextComponent,
+    ApplicationComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +82,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDialogModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule
   ],
   // if an error occurs, its probably because i didnt add "WebRequestService" as a provider
   providers: [RiddleService],

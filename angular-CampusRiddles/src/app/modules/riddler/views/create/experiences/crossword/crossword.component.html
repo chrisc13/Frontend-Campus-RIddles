@@ -1,0 +1,32 @@
+<!-- 
+    Questions: 
+        1. In the Input section, the first select contains an event but this specific event has not target attribute. Instead, the event
+            itself is a string object with the value selected by the user. Why?
+        2. 
+
+    TODO: 
+        1. Change the `(ngModelChange)="words=words.slice(0,$event)` since we're not exactly sure what the usefulness is yet. Or learn it and keep it. 
+
+
+-->
+<h1>Create a Crossword Puzzle</h1>
+
+<!-- Word Input Section -->
+<p>How many words will you be using?</p>
+
+<select [(ngModel)]="inputBoxes" (ngModelChange)="updateInputBoxes($event)">
+    <option value="">Select Count</option>
+    <option *ngFor="let num of dropdown_numbers" value={{num}}> {{num}} </option>
+</select>
+
+<div *ngIf="inputBoxes">
+    <form #allWords = "ngForm" (ngSubmit)= "onClickSubmit(allWords.value)" >
+        <label>Enter the Words for your Crossword</label>
+        <!-- <div *ngFor="let box of createInputBoxes |slice:0:inputBoxes"> --> <div *ngFor="let box of createInputBoxes">
+            <input required [(ngModel)]="words[box]" name="word_{{box+1}}" #word="ngModel" class="form-control">
+            <div class="alert alert-danger" *ngIf=" word.touched && !word.valid"> Missing word, please insert a word </div> 
+        </div>
+        <!-- <button type="submit" value="submit">Submit</button> -->
+        <button mat-button (click)="openDialog()" type="submit" value="submit">Submit</button>
+    </form>
+</div>
